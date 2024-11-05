@@ -63,16 +63,20 @@ $ docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P '!#1Pa
 - Solution Explorer > burda > NuGet Package Manager > Browse
 - EntityFramework & System.Data.SQLite yükleyin.
 - Veritabanı işlemleri için Package Manager Console kullanın.
-- 📦 Visual Studio 2022 > Tools > NuGet Package Manager > Package Manager Console
+- Visual Studio 2022 > Tools > NuGet Package Manager > Package Manager Console
 - PM > `NuGet\Install-Package Microsoft.Data.SqlClient -Version 5.2.2` > Enter
 - PM > `NuGet\Install-Package EntityFramework -Version 6.5.1` > Enter
 - PM > `NuGet\Install-Package Microsoft.EntityFramework.SqlServer -Version 6.5.1` > Enter
 - PM > `NuGet\Install-Package System.Data.SQLite.EF6 -Version 1.0.119` > Enter
 
-- 📦 Visual Studio 2022 > Solution Explorer > burda > Properties > Settings.settings
-- ConnectionString: `Data Source=`
-- 📦 Visual Studio 2022 > Solution Explorer > burda > App.config
-- ConnectionString: `Data Source=`
+- Visual Studio 2022 > Solution Explorer > burda > App.config
+```xml
+	<connectionStrings>
+		<add name="DbConnectionString"
+			 connectionString="Server=localhost\\mssql,1433;Database=db;User Id=sa;Password=!#1Password;Encrypt=False;trustServerCertificate=true"
+			 providerName="System.Data.SqlClient" />
+	</connectionStrings>
+```
 
 ### ⚡ Projeyi Çalıştırma
 

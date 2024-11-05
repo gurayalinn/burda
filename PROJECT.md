@@ -75,7 +75,15 @@ Projeye Entity Framework eklemek için aşağıdaki adımları takip edebilirsin
 - Solution Explorer'da projenizin üzerine sağ tıklayın ve "Manage NuGet Packages" seçeneğine tıklayın.
 - Browse sekmesine tıklayın ve "EntityFramework" arayın.
 - EntityFramework paketini projenize yükleyin.
+- Visual Studio 2022 > Solution Explorer > burda > App.config
 
+```xml
+	<connectionStrings>
+		<add name="DbConnectionString"
+			 connectionString="Server=localhost\\mssql,1433;Database=db;User Id=sa;Password=!#1Password;Encrypt=False;trustServerCertificate=true"
+			 providerName="System.Data.SqlClient" />
+	</connectionStrings>
+```
 --------------------------------------------
 
 5. Prompt:
