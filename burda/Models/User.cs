@@ -12,6 +12,7 @@ namespace burda.Models
         /*
         CREATE TABLE Users(
         ID INT PRIMARY KEY IDENTITY(1,1),
+        RFIDCardID INT UNIQUE,
         RoleID INT NOT NULL,
         StudentID NVARCHAR(20) NULL,
         FirstName NVARCHAR(50) NOT NULL,
@@ -21,6 +22,7 @@ namespace burda.Models
         ProgramName NVARCHAR(100) NOT NULL,
         ProfileImage NVARCHAR(256) NULL,
         FOREIGN KEY (RoleID) REFERENCES Roles(ID),
+        FOREIGN KEY (RFIDCardID) REFERENCES RFIDCards(ID),
         CreatedDate DATETIME DEFAULT GETDATE(),
         UpdatedDate DATETIME DEFAULT GETDATE()
         );
@@ -28,6 +30,8 @@ namespace burda.Models
 
         [Key]
         public int ID { get; set; }
+
+        public int? RFIDCardID { get; set; }
 
         [Required]
         public int RoleID { get; set; }
@@ -62,6 +66,10 @@ namespace burda.Models
 
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
+
+
+        [ForeignKey("RFIDCardID")]
+        public virtual RFIDCard RFIDCard { get; set; }
 
         [ForeignKey("RoleID")]
         public virtual Role Role { get; set; }
@@ -194,12 +202,12 @@ namespace burda.Models
         }
 
 
-        // get user by RFIDNumber
-        public static User GetUserByRFIDNumber(string rfidNumber)
+        // get user by RFIDCardID
+        public static User GetUserByRFIDCardID(int rfidCardID)
         {
             using (var db = new AppDbContext())
             {
-                return db.RFIDCards.FirstOrDefault(r => r.RFIDNumber == rfidNumber).User;
+                return db.Users.FirstOrDefault(u => u.RFIDCardID == rfidCardID);
             }
         }
 

@@ -47,6 +47,7 @@
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
+                        RFIDCardID = c.Int(),
                         RoleID = c.Int(nullable: false),
                         StudentID = c.String(maxLength: 20),
                         FirstName = c.String(nullable: false, maxLength: 50),
@@ -60,8 +61,10 @@
                         ClassRoom_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.RFIDCards", t => t.RFIDCardID)
                 .ForeignKey("dbo.Roles", t => t.RoleID, cascadeDelete: true)
                 .ForeignKey("dbo.ClassRooms", t => t.ClassRoom_ID)
+                .Index(t => t.RFIDCardID)
                 .Index(t => t.RoleID)
                 .Index(t => t.ClassRoom_ID);
             
@@ -71,15 +74,12 @@
                     {
                         ID = c.Int(nullable: false, identity: true),
                         RFIDNumber = c.String(nullable: false, maxLength: 50),
-                        UserID = c.Int(),
                         CreatedDate = c.DateTime(nullable: false),
                         UpdatedDate = c.DateTime(nullable: false),
                         User_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Users", t => t.UserID)
                 .ForeignKey("dbo.Users", t => t.User_ID)
-                .Index(t => t.UserID)
                 .Index(t => t.User_ID);
             
             CreateTable(
@@ -111,12 +111,12 @@
             DropForeignKey("dbo.Users", "ClassRoom_ID", "dbo.ClassRooms");
             DropForeignKey("dbo.Users", "RoleID", "dbo.Roles");
             DropForeignKey("dbo.RFIDCards", "User_ID", "dbo.Users");
-            DropForeignKey("dbo.RFIDCards", "UserID", "dbo.Users");
+            DropForeignKey("dbo.Users", "RFIDCardID", "dbo.RFIDCards");
             DropForeignKey("dbo.Attendances", "ClassID", "dbo.ClassRooms");
             DropIndex("dbo.RFIDCards", new[] { "User_ID" });
-            DropIndex("dbo.RFIDCards", new[] { "UserID" });
             DropIndex("dbo.Users", new[] { "ClassRoom_ID" });
             DropIndex("dbo.Users", new[] { "RoleID" });
+            DropIndex("dbo.Users", new[] { "RFIDCardID" });
             DropIndex("dbo.ClassRooms", new[] { "TeacherID" });
             DropIndex("dbo.Attendances", new[] { "ClassID" });
             DropIndex("dbo.Attendances", new[] { "UserID" });

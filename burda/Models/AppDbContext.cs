@@ -21,15 +21,17 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
+
+        modelBuilder.Entity<User>()
+            .HasOptional(u => u.RFIDCard)
+            .WithMany(r => r.Users)
+            .HasForeignKey(u => u.RFIDCardID)
+            .WillCascadeOnDelete(false);
+
         modelBuilder.Entity<User>()
             .HasRequired(u => u.Role)
             .WithMany(r => r.Users)
             .HasForeignKey(u => u.RoleID);
-
-        modelBuilder.Entity<RFIDCard>()
-            .HasOptional(r => r.User)
-            .WithMany()
-            .HasForeignKey(r => r.UserID);
 
         modelBuilder.Entity<ClassRoom>()
             .HasRequired(c => c.Teacher)
@@ -41,5 +43,7 @@ public class AppDbContext : DbContext
             .HasRequired(a => a.User)
             .WithMany(u => u.Attendances)
             .HasForeignKey(a => a.UserID);
+
+        base.OnModelCreating(modelBuilder);
     }
 }

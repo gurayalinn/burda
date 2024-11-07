@@ -45,6 +45,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 1,
+                    RFIDCardID = 1,
                     RoleID = 1,
                     StudentID = "000000000",
                     FirstName = "ADMIN",
@@ -57,6 +58,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 2,
+                    RFIDCardID = 2,
                     RoleID = 2,
                     StudentID = "002942369",
                     FirstName = "EBRU",
@@ -69,6 +71,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 3,
+                    RFIDCardID = 3,
                     RoleID = 2,
                     StudentID = "002942387",
                     FirstName = "HATİCE",
@@ -81,6 +84,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 4,
+                    RFIDCardID = 4,
                     RoleID = 2,
                     StudentID = "002942372",
                     FirstName = "UĞUR",
@@ -93,6 +97,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 5,
+                    RFIDCardID = 5,
                     RoleID = 2,
                     StudentID = "002942378",
                     FirstName = "HÜLYA",
@@ -105,6 +110,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 6,
+                    RFIDCardID = 6,
                     RoleID = 2,
                     StudentID = "002942379",
                     FirstName = "MURAT",
@@ -117,6 +123,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 7,
+                    RFIDCardID = 7,
                     RoleID = 2,
                     StudentID = "002942380",
                     FirstName = "KADİR BURAK",
@@ -129,6 +136,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 8,
+                    RFIDCardID = 8,
                     RoleID = 3,
                     StudentID = "222203578",
                     FirstName = "GÜRAY",
@@ -141,6 +149,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 9,
+                    RFIDCardID = 9,
                     RoleID = 3,
                     StudentID = "222303507",
                     FirstName = "EMİRHAN",
@@ -153,6 +162,7 @@ namespace burda.Migrations
                 new User
                 {
                     ID = 10,
+                    RFIDCardID = 10,
                     RoleID = 3,
                     StudentID = "222303519",
                     FirstName = "HİLMİ",
@@ -166,16 +176,16 @@ namespace burda.Migrations
 
 
             context.RFIDCards.AddOrUpdate(
-                new RFIDCard { ID = 1, UserID = 1, RFIDNumber = "000000000000" },
-                new RFIDCard { ID = 2, UserID = 2, RFIDNumber = "000000000001" },
-                new RFIDCard { ID = 3, UserID = 3, RFIDNumber = "000000000002" },
-                new RFIDCard { ID = 4, UserID = 3, RFIDNumber = "000000000003" },
-                new RFIDCard { ID = 5, UserID = 3, RFIDNumber = "000000000004" },
-                new RFIDCard { ID = 6, UserID = 3, RFIDNumber = "000000000005" },
-                new RFIDCard { ID = 7, UserID = 3, RFIDNumber = "000000000006" },
-                new RFIDCard { ID = 8, UserID = 3, RFIDNumber = "000000000007" },
-                new RFIDCard { ID = 9, UserID = 3, RFIDNumber = "000000000008" },
-                new RFIDCard { ID = 10, UserID = 3, RFIDNumber = "000000000009" }
+                new RFIDCard { ID = 1, RFIDNumber = "000000000000" },
+                new RFIDCard { ID = 2, RFIDNumber = "000000000001" },
+                new RFIDCard { ID = 3, RFIDNumber = "000000000002" },
+                new RFIDCard { ID = 4, RFIDNumber = "000000000003" },
+                new RFIDCard { ID = 5, RFIDNumber = "000000000004" },
+                new RFIDCard { ID = 6, RFIDNumber = "000000000005" },
+                new RFIDCard { ID = 7, RFIDNumber = "000000000006" },
+                new RFIDCard { ID = 8, RFIDNumber = "000000000007" },
+                new RFIDCard { ID = 9, RFIDNumber = "000000000008" },
+                new RFIDCard { ID = 10, RFIDNumber = "000000000009" }
                 );
 
             context.ClassRooms.AddOrUpdate(c => c.ID,
