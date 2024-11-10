@@ -14,14 +14,20 @@ namespace burda.Helpers
 
         public static void PlaySound(UnmanagedMemoryStream sound)
         {
-            using (SoundPlayer player = new SoundPlayer(sound))
+            try
             {
-                player.Play();
+                using (SoundPlayer player = new SoundPlayer(sound))
+                {
+                    player.Play();
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine("Error playing sound: " + ex.Message);
             }
         }
 
-
-
+        
         public static void PlayBeep()
         {
             PlaySound(beep);

@@ -12,7 +12,7 @@ namespace burda.Models
         /*
         CREATE TABLE Users(
         ID INT PRIMARY KEY IDENTITY(1,1),
-        RFIDCardID INT UNIQUE,
+        RFIDCardID BIGINT UNIQUE,
         RoleID INT NOT NULL,
         StudentID NVARCHAR(20) NULL,
         FirstName NVARCHAR(50) NOT NULL,
@@ -28,12 +28,18 @@ namespace burda.Models
         );
         */
 
+
+        public User()
+        {
+            ClassRooms = new HashSet<ClassRoom>();
+            Attendances = new HashSet<Attendance>();
+        }
+
         [Key]
         public int ID { get; set; }
+        public long? RFIDCardID { get; set; }
 
-        public int? RFIDCardID { get; set; }
-
-        [Required]
+        [Required, Range(1, 3), Display(Name = "Role")]
         public int RoleID { get; set; }
 
         [StringLength(20, ErrorMessage = "Öğrenci numarası 20 karakterden fazla olamaz.")]
@@ -53,8 +59,8 @@ namespace burda.Models
 
         [Required(ErrorMessage = "E-posta adresi boş bırakılamaz."), StringLength(254), DataType(DataType.EmailAddress)]
         [EmailAddress(ErrorMessage = "Geçerli bir e-posta adresi girin.")]
+        [Index(IsUnique = true)]
         public string Email { get; set; }
-
 
         [Required, StringLength(100)]
         public string ProgramName { get; set; }
@@ -67,167 +73,19 @@ namespace burda.Models
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
 
+        [ForeignKey("RoleID")]
+        public virtual Role Role { get; set; }
 
         [ForeignKey("RFIDCardID")]
         public virtual RFIDCard RFIDCard { get; set; }
 
-        [ForeignKey("RoleID")]
-        public virtual Role Role { get; set; }
-
-        public virtual ICollection<RFIDCard> RFIDCards { get; set; }
-
         public virtual ICollection<ClassRoom> ClassRooms { get; set; }
-
         public virtual ICollection<Attendance> Attendances { get; set; }
 
         // User.RoleID = 1 => Admin
         // User.RoleID = 2 => Teacher
         // User.RoleID = 3 => Student
-        public bool IsAdmin => RoleID == 1;
-        public bool IsTeacher => RoleID == 2;
-        public bool IsStudent => RoleID == 3;
 
         public string FullName => $"{FirstName} {LastName}";
-
-        public string RoleName => Role.RoleName;
-
-        // get all users
-        public static List<User> GetUsers()
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.ToList();
-            }
-        }
-
-        // get teachers
-        public static List<User> GetTeachers()
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.Where(u => u.RoleID == 2).ToList();
-            }
-        }
-
-        // get students
-        public static List<User> GetStudents()
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.Where(u => u.RoleID == 3).ToList();
-            }
-        }
-
-        // get admins
-        public static List<User> GetAdmins()
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.Where(u => u.RoleID == 1).ToList();
-            }
-        }
-
-        // get user by ID
-        public static User GetUser(int id)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.Find(id);
-            }
-        }
-
-        // get admin by ID
-        public static User GetAdmin(int id)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.RoleID == 1 && u.ID == id);
-            }
-
-        }
-
-        // get teacher by ID
-        public static User GetTeacher(int id)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.RoleID == 2 && u.ID == id);
-            }
-        }
-
-        // get student by ID
-        public static User GetStudent(int id)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.RoleID == 3 && u.ID == id);
-            }
-        }
-
-        // get user by email
-        public static User GetUserByEmail(string email)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.Email == email);
-            }
-        }
-
-        // get admin by email
-        public static User GetAdminByEmail(string email)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.Email == email && u.RoleID == 1);
-            }
-        }
-
-        // get student by email
-
-        public static User GetStudentByEmail(string email)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.Email == email && u.RoleID == 3);
-            }
-        }
-
-        // get teacher by email
-        public static User GetTeacherByEmail(string email)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.Email == email && u.RoleID == 2);
-            }
-        }
-
-
-        // get user by RFIDCardID
-        public static User GetUserByRFIDCardID(int rfidCardID)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.RFIDCardID == rfidCardID);
-            }
-        }
-
-        // get student by StudentID (StudentID is unique) and RoleID = 3
-        public static User GetStudentByStudentID(string studentID)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.StudentID == studentID && u.RoleID == 3);
-            }
-        }
-
-
-        // get user by email and password > for login
-        public static User GetUserByEmailAndPassword(string email, string password)
-        {
-            using (var db = new AppDbContext())
-            {
-                return db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
-            }
-        }
     }
 }

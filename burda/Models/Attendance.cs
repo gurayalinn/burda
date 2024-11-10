@@ -29,7 +29,7 @@ namespace burda.Models
         [Required]
         public int ClassID { get; set; }
 
-        [MaxLength(50)]
+        [StringLength(50)]
         public string AttType { get; set; } = "RFID";
 
         public DateTime AttTime { get; set; } = DateTime.Now;

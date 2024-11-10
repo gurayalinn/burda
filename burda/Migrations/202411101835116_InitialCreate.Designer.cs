@@ -13,7 +13,7 @@ namespace burda.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202411071856242_InitialCreate"; }
+            get { return "202411101835116_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

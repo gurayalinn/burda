@@ -10,9 +10,18 @@ CREATE TABLE Roles (
 );
 GO
 
+CREATE TABLE RFIDCards (
+    ID BIGINT PRIMARY KEY IDENTITY(1,1),
+    RFIDNumber NVARCHAR(50) NOT NULL UNIQUE,
+    RawData NVARCHAR(MAX) DEFAULT NULL,
+    CreatedDate DATETIME DEFAULT GETDATE(),
+    UpdatedDate DATETIME DEFAULT GETDATE()
+);
+GO
+
 CREATE TABLE Users(
     ID INT PRIMARY KEY IDENTITY(1,1),
-    RFIDCardID INT UNIQUE,
+    RFIDCardID BIGINT UNIQUE,
     RoleID INT NOT NULL,
     StudentID NVARCHAR(20) NULL,
     FirstName NVARCHAR(50) NOT NULL,
@@ -23,14 +32,6 @@ CREATE TABLE Users(
     ProfileImage NVARCHAR(256) NULL,
     FOREIGN KEY (RoleID) REFERENCES Roles(ID),
     FOREIGN KEY (RFIDCardID) REFERENCES RFIDCards(ID),
-    CreatedDate DATETIME DEFAULT GETDATE(),
-    UpdatedDate DATETIME DEFAULT GETDATE()
-);
-GO
-
-CREATE TABLE RFIDCards (
-    ID INT PRIMARY KEY IDENTITY(1,1),
-    RFIDNumber NVARCHAR(50) NOT NULL UNIQUE,
     CreatedDate DATETIME DEFAULT GETDATE(),
     UpdatedDate DATETIME DEFAULT GETDATE()
 );
@@ -77,6 +78,20 @@ INSERT INTO Roles (RoleName) VALUES
 ('STUDENT');
 GO
 
+
+INSERT INTO RFIDCards (RFIDNumber) VALUES
+('000000000000'),
+('000000000001'),
+('000000000002'),
+('000000000003'),
+('000000000004'),
+('000000000005'),
+('000000000006'),
+('000000000007'),
+('000000000008'),
+('000000000009');
+GO
+
 INSERT INTO Users (RoleID, RFIDCardID, StudentID, FirstName, LastName, Password, Email, ProgramName, ProfileImage) VALUES
 
 (1, '000000000', 1, 'ADMIN', 'ACCOUNT', 'Burda16!', 'admin@burda.local', NULL, NULL),
@@ -92,20 +107,6 @@ INSERT INTO Users (RoleID, RFIDCardID, StudentID, FirstName, LastName, Password,
 (3, '222303507', 9, 'EMİRHAN', 'UYSAL', '123456', '222303507@ogr.uludag.edu.tr', 'Bilgisayar Programcılığı', 'https://media.licdn.com/dms/image/v2/D4D03AQHLZvZyj3se6g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1702578194368?e=1736380800&v=beta&t=9gs8ncBKToHWUNgsu_DuFD91ET_mdaDq7CRZBTVHgus'),
 (3, '222303519', 10, 'HİLMİ', 'ENGİNAR', '123456', '222303519@ogr.uludag.edu.tr', 'Bilgisayar Programcılığı', 'https://media.licdn.com/dms/image/v2/D4D35AQHpgKZT9j4seA/profile-framedphoto-shrink_800_800/profile-framedphoto-shrink_800_800/0/1722868325917?e=1731225600&v=beta&t=TR4lS7hhyeW60Jm-J9uiiDZcBmBauHpvq6NI5XIvKns');
 GO
-
-INSERT INTO RFIDCards (RFIDNumber) VALUES
-('000000000000'),
-('000000000001'),
-('000000000002'),
-('000000000003'),
-('000000000004'),
-('000000000005'),
-('000000000006'),
-('000000000007'),
-('000000000008'),
-('000000000009');
-GO
-
 
 INSERT INTO ClassRooms (ClassName, TeacherID, LessonName, ClassDate, StartTime, EndTime, IsExam) VALUES
 ('BİL. LAB. 1', 3, 'VERİ TABANI I', '2024-10-01', '10:30:00', '12:00:00', 0),

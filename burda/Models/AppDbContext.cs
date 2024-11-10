@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
+
 
 
 public class AppDbContext : DbContext
@@ -13,8 +15,8 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Role> Roles { get; set; }
-    public DbSet<User> Users { get; set; }
     public DbSet<RFIDCard> RFIDCards { get; set; }
+    public DbSet<User> Users { get; set; }
     public DbSet<ClassRoom> ClassRooms { get; set; }
     public DbSet<Attendance> Attendances { get; set; }
     public DbSet<Log> Logs { get; set; }
@@ -22,28 +24,38 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
 
-        modelBuilder.Entity<User>()
-            .HasOptional(u => u.RFIDCard)
-            .WithMany(r => r.Users)
-            .HasForeignKey(u => u.RFIDCardID)
+        modelBuilder.Entity<Role>()
+            .HasMany<User>(r => r.Users)
+            .WithRequired(u => u.Role)
+            .HasForeignKey<int>(u => u.RoleID)
             .WillCascadeOnDelete(false);
 
         modelBuilder.Entity<User>()
-            .HasRequired(u => u.Role)
-            .WithMany(r => r.Users)
-            .HasForeignKey(u => u.RoleID);
+            .HasOptional(u => u.RFIDCard)
+            .WithMany()
+            .HasForeignKey<long?>(u => u.RFIDCardID)
+            .WillCascadeOnDelete(false);
+
+        modelBuilder.Entity<User>()
+            .HasMany<Attendance>(u => u.Attendances)
+            .WithRequired(a => a.User)
+            .HasForeignKey<int>(a => a.UserID)
+            .WillCascadeOnDelete(false);
 
         modelBuilder.Entity<ClassRoom>()
             .HasRequired(c => c.Teacher)
-            .WithMany(t => t.ClassRooms)
+            .WithMany()
             .HasForeignKey(c => c.TeacherID)
             .WillCascadeOnDelete(false);
 
-        modelBuilder.Entity<Attendance>()
-            .HasRequired(a => a.User)
-            .WithMany(u => u.Attendances)
-            .HasForeignKey(a => a.UserID);
+        modelBuilder.Entity<ClassRoom>()
+            .HasMany<Attendance>(c => c.Attendances)
+            .WithRequired(a => a.ClassRoom)
+            .HasForeignKey<int>(a => a.ClassID)
+            .WillCascadeOnDelete(false);
 
         base.OnModelCreating(modelBuilder);
+
+
     }
 }

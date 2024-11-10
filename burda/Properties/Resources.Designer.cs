@@ -572,6 +572,16 @@ namespace burda.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap uu {
+            get {
+                object obj = ResourceManager.GetObject("uu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap whatsapp {
             get {
                 object obj = ResourceManager.GetObject("whatsapp", resourceCulture);

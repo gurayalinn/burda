@@ -24,6 +24,12 @@ namespace burda.Models
         );
         */
 
+        public ClassRoom()
+        {
+            Students = new HashSet<User>();
+            Attendances = new HashSet<Attendance>();
+        }
+
         [Key]
         public int ID { get; set; }
 
@@ -45,7 +51,6 @@ namespace burda.Models
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
 
-        // TeacherID is a foreign key to User.RoleID where RoleID = 2 > GetTeacher method
         [ForeignKey("TeacherID")]
         public virtual User Teacher { get; set; }
 

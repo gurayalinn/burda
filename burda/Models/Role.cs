@@ -15,13 +15,19 @@ namespace burda.Models
         );
         */
 
+        public Role()
+        {
+            Users = new HashSet<User>();
+        }
+
+
         [Key]
         public int ID { get; set; }
+
         [Required, StringLength(256)]
         public string RoleName { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
-
 
     }
 }

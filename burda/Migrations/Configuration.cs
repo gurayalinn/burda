@@ -26,20 +26,18 @@ namespace burda.Migrations
             );
 
 
-            try
-            {
-                context.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var validationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-                    }
-                }
-            }
+            context.RFIDCards.AddOrUpdate(
+                new RFIDCard { ID = 1, RFIDNumber = "000000000000" },
+                new RFIDCard { ID = 2, RFIDNumber = "000000000001" },
+                new RFIDCard { ID = 3, RFIDNumber = "000000000002" },
+                new RFIDCard { ID = 4, RFIDNumber = "000000000003" },
+                new RFIDCard { ID = 5, RFIDNumber = "000000000004" },
+                new RFIDCard { ID = 6, RFIDNumber = "000000000005" },
+                new RFIDCard { ID = 7, RFIDNumber = "000000000006" },
+                new RFIDCard { ID = 8, RFIDNumber = "000000000007" },
+                new RFIDCard { ID = 9, RFIDNumber = "000000000008" },
+                new RFIDCard { ID = 10, RFIDNumber = "000000000009" }
+            );
 
             context.Users.AddOrUpdate(u => u.ID,
                 new User
@@ -175,18 +173,7 @@ namespace burda.Migrations
                 );
 
 
-            context.RFIDCards.AddOrUpdate(
-                new RFIDCard { ID = 1, RFIDNumber = "000000000000" },
-                new RFIDCard { ID = 2, RFIDNumber = "000000000001" },
-                new RFIDCard { ID = 3, RFIDNumber = "000000000002" },
-                new RFIDCard { ID = 4, RFIDNumber = "000000000003" },
-                new RFIDCard { ID = 5, RFIDNumber = "000000000004" },
-                new RFIDCard { ID = 6, RFIDNumber = "000000000005" },
-                new RFIDCard { ID = 7, RFIDNumber = "000000000006" },
-                new RFIDCard { ID = 8, RFIDNumber = "000000000007" },
-                new RFIDCard { ID = 9, RFIDNumber = "000000000008" },
-                new RFIDCard { ID = 10, RFIDNumber = "000000000009" }
-                );
+
 
             context.ClassRooms.AddOrUpdate(c => c.ID,
                 new ClassRoom
@@ -294,21 +281,15 @@ namespace burda.Migrations
                 );
 
             context.Logs.AddOrUpdate(l => l.ID,
-                new Log { ID = 1, LogType = "INFO", Message = "System started.", LogTime = DateTime.Now });
+                new Log { ID = 1, LogType = "INFO", Message = "System started.", LogTime = new DateTime(2024, 11, 1, 16, 15, 0) });
 
             try
             {
                 context.SaveChanges();
             }
-            catch (DbEntityValidationException ex)
+            catch (Exception ex)
             {
-                foreach (var validationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-                    }
-                }
+                Console.WriteLine(ex.InnerException?.Message ?? ex.Message);
             }
 
         }

@@ -156,6 +156,7 @@
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
@@ -195,10 +196,15 @@
     <Compile Include="Burda.Designer.cs">
       <DependentUpon>Burda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DbSync.cs" />
+    <Compile Include="Helpers\Gist.cs" />
+    <Compile Include="Helpers\Json.cs" />
+    <Compile Include="Helpers\RFID.cs" />
     <Compile Include="Helpers\SoundHelper.cs" />
-    <Compile Include="Migrations\202411071856242_InitialCreate.cs" />
-    <Compile Include="Migrations\202411071856242_InitialCreate.Designer.cs">
-      <DependentUpon>202411071856242_InitialCreate.cs</DependentUpon>
+    <Compile Include="Helpers\TextToSpeechHelper.cs" />
+    <Compile Include="Migrations\202411101835116_InitialCreate.cs" />
+    <Compile Include="Migrations\202411101835116_InitialCreate.Designer.cs">
+      <DependentUpon>202411101835116_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
@@ -213,8 +219,8 @@
     <EmbeddedResource Include="Burda.resx">
       <DependentUpon>Burda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202411071856242_InitialCreate.resx">
-      <DependentUpon>202411071856242_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202411101835116_InitialCreate.resx">
+      <DependentUpon>202411101835116_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -318,6 +324,7 @@
     <None Include="Assets\pictures\logo\hands.jpg" />
     <Content Include="Assets\pictures\logo\hands.png" />
     <Content Include="Assets\pictures\logo\login.png" />
+    <None Include="Assets\pictures\logo\uu.png" />
     <Content Include="clock.ico" />
   </ItemGroup>
   <ItemGroup>
