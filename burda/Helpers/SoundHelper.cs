@@ -16,8 +16,10 @@ namespace burda.Helpers
         {
             try
             {
-                using (SoundPlayer player = new SoundPlayer(sound))
+                sound.Position = 0;
+                using (SoundPlayer player = new SoundPlayer())
                 {
+                    player.Stream = sound;
                     player.Play();
                 }
             }
@@ -27,11 +29,10 @@ namespace burda.Helpers
             }
         }
 
-        
         public static void PlayBeep()
         {
             PlaySound(beep);
         }
-
     }
+
 }

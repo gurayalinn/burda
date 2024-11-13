@@ -2,6 +2,8 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Serilog;
+using burda.Helpers;
 
 namespace burda.Helpers
 {
@@ -24,6 +26,7 @@ namespace burda.Helpers
                 };
 
                 var response = await client.GetStringAsync(gistUrl);
+                Logger.Information("Gist fetched.");
                 return response;
             }
             catch (HttpRequestException httpEx)

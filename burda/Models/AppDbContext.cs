@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
+using System.Windows.Forms;
 
 
 
@@ -12,6 +13,7 @@ public class AppDbContext : DbContext
 {
     public AppDbContext() : base("name=AppDbContext")
     {
+        Database.SetInitializer<AppDbContext>(null);
     }
 
     public DbSet<Role> Roles { get; set; }

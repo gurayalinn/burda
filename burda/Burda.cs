@@ -11,16 +11,18 @@ using System.Windows.Forms;
 using burda.Helpers;
 using burda.Models;
 
+
 namespace burda
 {
+
     public partial class Burda : Form
     {
         private Timer syncTimer;
 
         public Burda()
         {
+            Logger.Information("Views: Burda loaded.");
             InitializeComponent();
-            this.Shown += Burda_Shown;
         }
 
         private void Burda_Load(object sender, EventArgs e)
@@ -30,9 +32,9 @@ namespace burda
 
         private void button_beep_Click(object sender, EventArgs e)
         {
-            SoundHelper.PlaySound(SoundHelper.beep);
-            TextToSpeechHelper.ReadName("BURDA!");
+
             SoundHelper.PlayBeep();
+            TextToSpeechHelper.ReadName("BURADA!");
         }
 
         private void Burda_Shown(object sender, EventArgs e)
@@ -42,7 +44,8 @@ namespace burda
                 Interval = 60000 // 1 dakika
             };
 
-            syncTimer.Tick += async (s, args) => await Program.SyncGist();
+            //syncTimer.Tick += async (s, args) => await Program.SyncGist();
+            
             syncTimer.Start();
         }
 

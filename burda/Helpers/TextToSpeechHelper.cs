@@ -16,7 +16,7 @@ namespace burda.Helpers
             {
                 synthesizer.Rate = -2;
                 synthesizer.Volume = 100;
-                synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Child);
+                synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
 
                 synthesizer.Speak($"{name}");
             }

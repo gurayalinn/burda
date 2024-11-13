@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using burda.Models;
 using burda.Helpers;
+using Serilog;
 
 namespace burda
 {
@@ -15,9 +16,21 @@ namespace burda
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Burda());
+            try
+            {
+
+                Logger.Information("Program started...");
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Burda());
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("An error occurred during program execution", ex);
+            }
+
+
+
         }
 
         public static async Task SyncGist()
@@ -39,10 +52,12 @@ namespace burda
                 await databaseSyncService.SyncWithDatabaseAsync(cards);
 
                 Console.WriteLine("Veri başarıyla senkronize edildi.");
+                Logger.Debug("Data synchronization completed successfully.");
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Hata oluştu: " + ex.Message);
+                await Logger.Error("An error occurred during data synchronization", ex);
             }
         }
     }
