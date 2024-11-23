@@ -87,5 +87,8 @@ namespace burda.Models
         // User.RoleID = 3 => Student
 
         public string FullName => $"{FirstName} {LastName}";
+
+
+
     }
 }

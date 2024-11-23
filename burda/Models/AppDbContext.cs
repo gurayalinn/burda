@@ -1,11 +1,13 @@
 ﻿using System.Data.Entity;
 using burda.Models;
+using burda.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Windows.Forms;
+using System.Linq;
 
 
 
@@ -13,7 +15,9 @@ public class AppDbContext : DbContext
 {
     public AppDbContext() : base("name=AppDbContext")
     {
-        Database.SetInitializer<AppDbContext>(null);
+        Database.SetInitializer<AppDbContext>(new CreateDatabaseIfNotExists<AppDbContext>());
+        //Database.SetInitializer<AppDbContext>(new DropCreateDatabaseIfModelChanges<AppDbContext>());
+        //Database.SetInitializer<AppDbContext>(new MigrateDatabaseToLatestVersion<AppDbContext, burda.Migrations.Configuration>());
     }
 
     public DbSet<Role> Roles { get; set; }
@@ -59,5 +63,22 @@ public class AppDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
 
+    }
+
+    public override int SaveChanges()
+    {
+        var addedEntities = ChangeTracker.Entries()
+            .Where(e => e.State == EntityState.Added)
+            .Select(e => e.Entity)
+            .ToList();
+
+        int result = base.SaveChanges();
+
+        foreach (var entity in addedEntities)
+        {
+            Logger.Information($"New object: {entity.GetType().Name}");
+        }
+
+        return result;
     }
 }

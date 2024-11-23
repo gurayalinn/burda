@@ -10,16 +10,15 @@ using System.Windows.Forms;
 
 namespace burda.Views
 {
-    public partial class LoginPage : Form
+    public partial class AdminPanel : BasePanel
     {
-        public LoginPage()
+
+        public AdminPanel()
         {
             InitializeComponent();
         }
-
-        private void usernameTxtBx_TextChanged(object sender, EventArgs e)
+        private void AdminPanel_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

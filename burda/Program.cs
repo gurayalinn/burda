@@ -19,18 +19,16 @@ namespace burda
             try
             {
 
-                Logger.Information("Program started...");
+                Logger.Information("Program started.");
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Burda());
+                
             }
             catch (Exception ex)
             {
                 Logger.Error("An error occurred during program execution", ex);
             }
-
-
-
         }
 
         public static async Task SyncGist()
@@ -51,8 +49,6 @@ namespace burda
                 // Veritabanı ile senkronize et
                 await databaseSyncService.SyncWithDatabaseAsync(cards);
 
-                Console.WriteLine("Veri başarıyla senkronize edildi.");
-                Logger.Debug("Data synchronization completed successfully.");
             }
             catch (Exception ex)
             {

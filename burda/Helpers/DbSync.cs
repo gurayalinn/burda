@@ -8,6 +8,7 @@ using System.Data.Entity.Validation;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
+using System.Runtime.Remoting.Contexts;
 
 namespace burda.Helpers
 {
@@ -58,6 +59,7 @@ namespace burda.Helpers
                     // Veritabanını güncelle
                     await context.SaveChangesAsync();
                     transaction.Commit();
+                    Logger.Information("Gist verisi senkronize edildi.");
                     Console.WriteLine("Veri başarıyla senkronize edildi.");
                 }
             }
@@ -87,6 +89,7 @@ namespace burda.Helpers
         {
             context.RFIDCards.Add(card);
             Console.WriteLine($"Yeni kart eklendi: {card.RFIDNumber}");
+            Logger.Information($"Yeni kart eklendi: {card.RFIDNumber}");
         }
 
         // Var olan kartı günceller
@@ -124,6 +127,7 @@ namespace burda.Helpers
 
                     context.Entry(existingCard).State = EntityState.Modified;
                     Console.WriteLine($"Kart güncellendi: {newCard.RFIDNumber}");
+                    Logger.Information($"Kart güncellendi: {newCard.RFIDNumber}");
                 }
                 else
                 {
@@ -188,6 +192,7 @@ namespace burda.Helpers
             Console.WriteLine("Veri güncellenirken bir hata oluştu.");
             Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
             Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+            Logger.Error("Veri güncellenirken bir hata oluştu.", ex);
         }
 
         // Diğer genel hataları loglar
@@ -196,6 +201,7 @@ namespace burda.Helpers
             Console.WriteLine($"Beklenmeyen hata: {ex.Message}");
             Console.WriteLine($"Hata Detayı: {ex.InnerException?.Message}");
             Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+            Logger.Error("Beklenmeyen hata oluştu.", ex);
         }
     }
 }

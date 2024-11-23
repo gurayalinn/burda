@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using burda.Helpers;
 using burda.Models;
+using burda.Views;
 
 
 namespace burda
@@ -18,15 +19,22 @@ namespace burda
     public partial class Burda : Form
     {
         private Timer syncTimer;
+        private bool isSyncing = false;
 
         public Burda()
         {
-            Logger.Information("Views: Burda loaded.");
             InitializeComponent();
         }
 
         private void Burda_Load(object sender, EventArgs e)
         {
+
+            Logger.Information("Views: Burda loaded.");
+
+            syncTimer = new Timer();
+            syncTimer.Interval = 1000;
+            syncTimer.Tick += async (s, args) => await Program.SyncGist();
+            syncTimer.Start();
 
         }
 
@@ -37,17 +45,22 @@ namespace burda
             TextToSpeechHelper.ReadName("BURADA!");
         }
 
-        private void Burda_Shown(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            syncTimer = new Timer
-            {
-                Interval = 60000 // 1 dakika
-            };
+            BasePanel form = new LoginPanel();
+            form.Show();
 
-            //syncTimer.Tick += async (s, args) => await Program.SyncGist();
-            
-            syncTimer.Start();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            BasePanel form = new HelpDeskPanel();
+            form.Show();
+        }
+
+        private void Burda_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -23,8 +23,6 @@ namespace burda.Helpers
 
             _logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.Console()
-                .WriteTo.File(Path.Combine(logDirectory, "log.txt"), rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 
             _logger.Information("Logger initialized.");
