@@ -10,5 +10,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source="127.0.0.1, 1433";Initial Catalog=db;Persist Security Info=True;User ID=sa;Password=!#1Password;Encrypt=False;TrustServerCertificate=True</Value>
     </Setting>
+    <Setting Name="AdminEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin@burda.local</Value>
+    </Setting>
+    <Setting Name="AdminPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Burda16!</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

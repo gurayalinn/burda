@@ -76,7 +76,7 @@ public class AppDbContext : DbContext
 
         foreach (var entity in addedEntities)
         {
-            Logger.Information($"New object: {entity.GetType().Name}");
+            Logger.Information($"New object: {entity.GetType().Name + " " + entity.ToString()}");
         }
 
         return result;

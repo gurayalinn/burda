@@ -10,15 +10,11 @@ using System.Windows.Forms;
 
 namespace burda.Views
 {
-    public partial class AdminPanel : BasePanel
+    public partial class SettingsForm : BaseForm
     {
-
-        public AdminPanel()
+        public SettingsForm()
         {
             InitializeComponent();
-        }
-        private void AdminPanel_Load(object sender, EventArgs e)
-        {
         }
     }
 }

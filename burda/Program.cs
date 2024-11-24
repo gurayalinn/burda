@@ -14,20 +14,20 @@ namespace burda
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static async Task Main()
         {
             try
             {
 
-                Logger.Information("Program started.");
+                await Logger.Information("Program started.");
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Burda());
-                
+                Application.Run(new MainForm());
+
             }
             catch (Exception ex)
             {
-                Logger.Error("An error occurred during program execution", ex);
+                await Logger.Error("An error occurred during program execution", ex);
             }
         }
 

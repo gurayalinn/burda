@@ -11,6 +11,18 @@ namespace burda.Controllers
     {
         public UserController() : base()
         {
+
+        }
+
+        public List<User> GetAllStudents()
+        {
+            return _context.Users.Where(u => u.Role.RoleName == "STUDENT").ToList();
+        }
+
+
+        public User Login(string email, string password)
+        {
+            return _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
         }
 
         public User FindUserByStudentID(string StudentID)

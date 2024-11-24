@@ -13,6 +13,22 @@ namespace burda.Controllers
         {
         }
 
+
+        public List<ClassRoom> GetAllClassRooms()
+        {
+            return _context.ClassRooms.ToList();
+        }
+
+        public List<ClassRoom> FindClassesByTeacherID(int TeacherID)
+        {
+            return _context.ClassRooms.Where(c => c.TeacherID == TeacherID).ToList();
+        }
+
+        public List<ClassRoom> FindClassesByClassName(String ClassName)
+        {
+            return _context.ClassRooms.Where(c => c.ClassName == ClassName).ToList();
+        }
+
         public List<ClassRoom> FindClassesByLessonName(String LessonName)
         {
             return _context.ClassRooms.Where(c => c.LessonName == LessonName).ToList();

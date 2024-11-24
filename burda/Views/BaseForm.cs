@@ -4,12 +4,13 @@ using System.Windows.Forms;
 
 namespace burda.Views
 {
-    public partial class BasePanel : Form
+    public partial class BaseForm : Form
     {
-        public BasePanel()
+        public BaseForm()
         {
             InitializeComponent();
             InitializeBasePanel();
+
         }
 
         private void InitializeBasePanel()
@@ -40,5 +41,19 @@ namespace burda.Views
             this.Controls.Add(childForm);
             childForm.Show();
         }
+
+        public void CloseForm(Form childForm)
+        {
+            this.Controls.Remove(childForm);
+        }
+
+        private void BasePanel_Load(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+
     }
 }

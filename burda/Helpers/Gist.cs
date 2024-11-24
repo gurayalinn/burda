@@ -26,7 +26,7 @@ namespace burda.Helpers
                 };
 
                 var response = await client.GetStringAsync(gistUrl);
-                Logger.Information("Gist fetched.");
+                await Logger.Information("Gist fetched.");
                 return response;
             }
             catch (HttpRequestException httpEx)

@@ -87,6 +87,9 @@
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Memory.Data, Version=1.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.Data.1.0.2\lib\net461\System.Memory.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -114,6 +117,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -132,19 +136,20 @@
     <Compile Include="Controllers\ClassRoomController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Burda.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Burda.Designer.cs">
-      <DependentUpon>Burda.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\DbSync.cs" />
     <Compile Include="Helpers\Gist.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\RFID.cs" />
     <Compile Include="Helpers\SoundHelper.cs" />
     <Compile Include="Helpers\TextToSpeechHelper.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202411101835116_InitialCreate.cs" />
     <Compile Include="Migrations\202411101835116_InitialCreate.Designer.cs">
       <DependentUpon>202411101835116_InitialCreate.cs</DependentUpon>
@@ -159,32 +164,38 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\AdminPanel.cs">
+    <Compile Include="Views\ManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AdminPanel.Designer.cs">
-      <DependentUpon>AdminPanel.cs</DependentUpon>
+    <Compile Include="Views\ManagementForm.Designer.cs">
+      <DependentUpon>ManagementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\BasePanel.cs">
+    <Compile Include="Views\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\BasePanel.Designer.cs">
-      <DependentUpon>BasePanel.cs</DependentUpon>
+    <Compile Include="Views\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\HelpDeskPanel.cs">
+    <Compile Include="Views\HelpDeskForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\HelpDeskPanel.Designer.cs">
-      <DependentUpon>HelpDeskPanel.cs</DependentUpon>
+    <Compile Include="Views\HelpDeskForm.Designer.cs">
+      <DependentUpon>HelpDeskForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginPanel.cs">
+    <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\LoginPanel.Designer.cs">
-      <DependentUpon>LoginPanel.cs</DependentUpon>
+    <Compile Include="Views\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Burda.resx">
-      <DependentUpon>Burda.cs</DependentUpon>
+    <Compile Include="Views\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202411101835116_InitialCreate.resx">
       <DependentUpon>202411101835116_InitialCreate.cs</DependentUpon>
@@ -199,14 +210,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\AdminPanel.resx">
-      <DependentUpon>AdminPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ManagementForm.resx">
+      <DependentUpon>ManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\HelpDeskPanel.resx">
-      <DependentUpon>HelpDeskPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Views\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LoginPanel.resx">
-      <DependentUpon>LoginPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Views\HelpDeskForm.resx">
+      <DependentUpon>HelpDeskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -272,6 +286,7 @@
     <Content Include="Assets\pictures\icons\question.png" />
     <Content Include="Assets\pictures\icons\refresh.png" />
     <Content Include="Assets\pictures\icons\rotate-right.png" />
+    <Content Include="Assets\pictures\icons\save.png" />
     <Content Include="Assets\pictures\icons\search.png" />
     <Content Include="Assets\pictures\icons\settings-sliders.png" />
     <Content Include="Assets\pictures\icons\thumbtack.png" />
@@ -290,6 +305,7 @@
     <Content Include="Assets\pictures\logo\hands.png" />
     <Content Include="Assets\pictures\logo\login.png" />
     <None Include="Assets\pictures\logo\uu.png" />
+    <None Include="Assets\pictures\logo\tbmyo.png" />
     <Content Include="clock.ico" />
   </ItemGroup>
   <ItemGroup>

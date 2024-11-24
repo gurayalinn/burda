@@ -59,7 +59,7 @@ namespace burda.Helpers
                     // Veritabanını güncelle
                     await context.SaveChangesAsync();
                     transaction.Commit();
-                    Logger.Information("Gist verisi senkronize edildi.");
+                    await Logger.Information("Gist verisi senkronize edildi.");
                     Console.WriteLine("Veri başarıyla senkronize edildi.");
                 }
             }
@@ -69,11 +69,11 @@ namespace burda.Helpers
             }
             catch (DbUpdateException ex)
             {
-                HandleDbUpdateException(ex);
+                await HandleDbUpdateExceptionAsync(ex);
             }
             catch (Exception ex)
             {
-                HandleGeneralException(ex);
+                await HandleGeneralExceptionAsync(ex);
             }
         }
 
@@ -89,7 +89,7 @@ namespace burda.Helpers
         {
             context.RFIDCards.Add(card);
             Console.WriteLine($"Yeni kart eklendi: {card.RFIDNumber}");
-            Logger.Information($"Yeni kart eklendi: {card.RFIDNumber}");
+            await Logger.Information($"Yeni kart eklendi: {card.RFIDNumber}");
         }
 
         // Var olan kartı günceller
@@ -127,7 +127,7 @@ namespace burda.Helpers
 
                     context.Entry(existingCard).State = EntityState.Modified;
                     Console.WriteLine($"Kart güncellendi: {newCard.RFIDNumber}");
-                    Logger.Information($"Kart güncellendi: {newCard.RFIDNumber}");
+                    await Logger.Information($"Kart güncellendi: {newCard.RFIDNumber}");
                 }
                 else
                 {
@@ -187,21 +187,21 @@ namespace burda.Helpers
         }
 
         // DbUpdateException hatalarını loglar
-        private void HandleDbUpdateException(DbUpdateException ex)
+        private async Task HandleDbUpdateExceptionAsync(DbUpdateException ex)
         {
             Console.WriteLine("Veri güncellenirken bir hata oluştu.");
             Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
             Console.WriteLine($"Stack Trace: {ex.StackTrace}");
-            Logger.Error("Veri güncellenirken bir hata oluştu.", ex);
+            await Logger.Error("Veri güncellenirken bir hata oluştu.", ex);
         }
 
         // Diğer genel hataları loglar
-        private void HandleGeneralException(Exception ex)
+        private async Task HandleGeneralExceptionAsync(Exception ex)
         {
             Console.WriteLine($"Beklenmeyen hata: {ex.Message}");
             Console.WriteLine($"Hata Detayı: {ex.InnerException?.Message}");
             Console.WriteLine($"Stack Trace: {ex.StackTrace}");
-            Logger.Error("Beklenmeyen hata oluştu.", ex);
+            await Logger.Error("Beklenmeyen hata oluştu.", ex);
         }
     }
 }

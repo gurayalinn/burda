@@ -7,10 +7,21 @@ using System.Threading.Tasks;
 
 namespace burda.Controllers
 {
-    internal class AttandanceController : BaseController<Attendance>
+    internal class AttendanceController : BaseController<Attendance>
     {
-        public AttandanceController() : base()
+        public AttendanceController() : base()
         {
+        }
+
+        public Attendance AddAttendance(User student, ClassRoom classRoom)
+        {
+            Attendance attendance = new Attendance
+            {
+                UserID = student.ID,
+                ClassID = classRoom.ID,
+                AttTime = DateTime.Now
+            };
+            return Create(attendance);
         }
 
         public Attendance FindAttendanceByUserID(int userID)
