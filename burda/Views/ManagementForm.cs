@@ -21,7 +21,7 @@ namespace burda.Views
         private ClassRoomController classRoomController = new ClassRoomController();
         private AttendanceController attendanceController = new AttendanceController();
         private CardController cardController = new CardController();
-
+        
         private List<Role> roles;
         private List<User> users;
         private List<ClassRoom> classRooms;
@@ -53,6 +53,8 @@ namespace burda.Views
 
                 if (LoginForm.loggedUser.Role.RoleName == "ADMIN")
                 {
+                    //dataGridViewList.DataSource = userController.GetAllStudents();
+                    dataGridViewList.DefaultCellStyle.ForeColor = Color.Black;
                     buttonUsers.Visible = true;
                     pictureBoxUsers.Visible = true;
                     buttonCards.Visible = true;

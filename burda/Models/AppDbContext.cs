@@ -16,6 +16,7 @@ public class AppDbContext : DbContext
     public AppDbContext() : base("name=AppDbContext")
     {
         Database.SetInitializer<AppDbContext>(new CreateDatabaseIfNotExists<AppDbContext>());
+        // Update-Database -ConfigurationTypeName burda.Migrations.Configuration
         //Database.SetInitializer<AppDbContext>(new DropCreateDatabaseIfModelChanges<AppDbContext>());
         //Database.SetInitializer<AppDbContext>(new MigrateDatabaseToLatestVersion<AppDbContext, burda.Migrations.Configuration>());
     }
@@ -76,7 +77,8 @@ public class AppDbContext : DbContext
 
         foreach (var entity in addedEntities)
         {
-            Logger.Information($"New object: {entity.GetType().Name + " " + entity.ToString()}");
+            //Logger.Information($"New object: {entity.GetType().Name + " " + entity.ToString()}");
+            Console.WriteLine($"New object: {entity.GetType().Name + " " + entity.ToString()}");
         }
 
         return result;

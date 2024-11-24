@@ -26,11 +26,8 @@ namespace burda.Views
                 BaseForm form = new ManagementForm(loggedUser);
                 form.Show();
             }
-
             InitializeComponent();
-
         }
-
 
 
 

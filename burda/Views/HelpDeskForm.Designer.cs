@@ -103,6 +103,7 @@
             this.buttonSend.Text = "Gönder";
             this.buttonSend.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSend.UseVisualStyleBackColor = false;
+            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
             // 
             // labelMessage
             // 
@@ -190,10 +191,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonClose;
             this.ClientSize = new System.Drawing.Size(334, 436);
+            this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.labelEmail);
             this.Controls.Add(this.labelTitle);
-            this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.richTextBoxMessage);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

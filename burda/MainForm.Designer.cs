@@ -43,7 +43,6 @@
             this.labelDateCurrent = new System.Windows.Forms.Label();
             this.comboBoxClassrooms = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.labelDate = new System.Windows.Forms.Label();
             this.labelTeacherName = new System.Windows.Forms.Label();
             this.labelTeacherLbl = new System.Windows.Forms.Label();
             this.labelLessonName = new System.Windows.Forms.Label();
@@ -111,7 +110,7 @@
             this.buttonHere.BackColor = System.Drawing.Color.DarkGreen;
             this.buttonHere.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonHere.ForeColor = System.Drawing.Color.Beige;
-            this.buttonHere.Location = new System.Drawing.Point(200, 120);
+            this.buttonHere.Location = new System.Drawing.Point(180, 120);
             this.buttonHere.Name = "buttonHere";
             this.buttonHere.Size = new System.Drawing.Size(190, 50);
             this.buttonHere.TabIndex = 48;
@@ -127,7 +126,7 @@
             this.labelTitle.AutoSize = true;
             this.labelTitle.Font = new System.Drawing.Font("Cascadia Mono", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitle.ForeColor = System.Drawing.Color.Bisque;
-            this.labelTitle.Location = new System.Drawing.Point(150, 5);
+            this.labelTitle.Location = new System.Drawing.Point(125, 25);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(335, 35);
             this.labelTitle.TabIndex = 9;
@@ -182,7 +181,7 @@
             this.labelStudentNameLbl.AutoSize = true;
             this.labelStudentNameLbl.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStudentNameLbl.ForeColor = System.Drawing.Color.Bisque;
-            this.labelStudentNameLbl.Location = new System.Drawing.Point(150, 115);
+            this.labelStudentNameLbl.Location = new System.Drawing.Point(350, 50);
             this.labelStudentNameLbl.Name = "labelStudentNameLbl";
             this.labelStudentNameLbl.Size = new System.Drawing.Size(104, 18);
             this.labelStudentNameLbl.TabIndex = 12;
@@ -194,7 +193,7 @@
             this.labelStudentIdLbl.AutoSize = true;
             this.labelStudentIdLbl.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStudentIdLbl.ForeColor = System.Drawing.Color.Bisque;
-            this.labelStudentIdLbl.Location = new System.Drawing.Point(150, 150);
+            this.labelStudentIdLbl.Location = new System.Drawing.Point(350, 120);
             this.labelStudentIdLbl.Name = "labelStudentIdLbl";
             this.labelStudentIdLbl.Size = new System.Drawing.Size(96, 18);
             this.labelStudentIdLbl.TabIndex = 14;
@@ -206,7 +205,7 @@
             this.labelStudentName.AutoSize = true;
             this.labelStudentName.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStudentName.ForeColor = System.Drawing.Color.Lime;
-            this.labelStudentName.Location = new System.Drawing.Point(275, 120);
+            this.labelStudentName.Location = new System.Drawing.Point(350, 80);
             this.labelStudentName.Name = "labelStudentName";
             this.labelStudentName.Size = new System.Drawing.Size(112, 18);
             this.labelStudentName.TabIndex = 13;
@@ -218,7 +217,7 @@
             this.labelStudentId.AutoSize = true;
             this.labelStudentId.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStudentId.ForeColor = System.Drawing.Color.Lime;
-            this.labelStudentId.Location = new System.Drawing.Point(275, 150);
+            this.labelStudentId.Location = new System.Drawing.Point(350, 145);
             this.labelStudentId.Name = "labelStudentId";
             this.labelStudentId.Size = new System.Drawing.Size(80, 18);
             this.labelStudentId.TabIndex = 15;
@@ -231,7 +230,7 @@
             this.maskedTextBoxStudentId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maskedTextBoxStudentId.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maskedTextBoxStudentId.ForeColor = System.Drawing.Color.Lime;
-            this.maskedTextBoxStudentId.Location = new System.Drawing.Point(200, 320);
+            this.maskedTextBoxStudentId.Location = new System.Drawing.Point(180, 295);
             this.maskedTextBoxStudentId.Mask = "000000000";
             this.maskedTextBoxStudentId.Name = "maskedTextBoxStudentId";
             this.maskedTextBoxStudentId.PromptChar = '-';
@@ -245,7 +244,7 @@
             this.labelStudentIdLblBottom.AutoSize = true;
             this.labelStudentIdLblBottom.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStudentIdLblBottom.ForeColor = System.Drawing.Color.Bisque;
-            this.labelStudentIdLblBottom.Location = new System.Drawing.Point(200, 300);
+            this.labelStudentIdLblBottom.Location = new System.Drawing.Point(180, 275);
             this.labelStudentIdLblBottom.Name = "labelStudentIdLblBottom";
             this.labelStudentIdLblBottom.Size = new System.Drawing.Size(96, 18);
             this.labelStudentIdLblBottom.TabIndex = 32;
@@ -259,7 +258,7 @@
             this.labelDateCurrent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labelDateCurrent.Font = new System.Drawing.Font("Cascadia Mono", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDateCurrent.ForeColor = System.Drawing.Color.Lime;
-            this.labelDateCurrent.Location = new System.Drawing.Point(275, 75);
+            this.labelDateCurrent.Location = new System.Drawing.Point(190, 125);
             this.labelDateCurrent.Name = "labelDateCurrent";
             this.labelDateCurrent.Size = new System.Drawing.Size(25, 27);
             this.labelDateCurrent.TabIndex = 11;
@@ -290,18 +289,6 @@
             this.label11.TabIndex = 22;
             this.label11.Text = "Sınıf:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelDate
-            // 
-            this.labelDate.AutoSize = true;
-            this.labelDate.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDate.ForeColor = System.Drawing.Color.Bisque;
-            this.labelDate.Location = new System.Drawing.Point(150, 75);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(48, 18);
-            this.labelDate.TabIndex = 10;
-            this.labelDate.Text = "TARİH";
-            this.labelDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelTeacherName
             // 
@@ -378,7 +365,7 @@
             // pictureBoxStudentProfilePicture
             // 
             this.pictureBoxStudentProfilePicture.Image = global::burda.Properties.Resources.user;
-            this.pictureBoxStudentProfilePicture.Location = new System.Drawing.Point(200, 30);
+            this.pictureBoxStudentProfilePicture.Location = new System.Drawing.Point(183, 50);
             this.pictureBoxStudentProfilePicture.Name = "pictureBoxStudentProfilePicture";
             this.pictureBoxStudentProfilePicture.Size = new System.Drawing.Size(150, 150);
             this.pictureBoxStudentProfilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -388,7 +375,7 @@
             // pictureBoxTbmyo
             // 
             this.pictureBoxTbmyo.Image = global::burda.Properties.Resources.tbmyo;
-            this.pictureBoxTbmyo.Location = new System.Drawing.Point(165, 0);
+            this.pictureBoxTbmyo.Location = new System.Drawing.Point(120, 5);
             this.pictureBoxTbmyo.Name = "pictureBoxTbmyo";
             this.pictureBoxTbmyo.Size = new System.Drawing.Size(150, 150);
             this.pictureBoxTbmyo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -398,7 +385,7 @@
             // pictureBoxLogo
             // 
             this.pictureBoxLogo.Image = global::burda.Properties.Resources.clock;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(5, 5);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(150, 150);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -408,9 +395,9 @@
             // tableLayoutPanelMain
             // 
             this.tableLayoutPanelMain.ColumnCount = 3;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.83186F));
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.16814F));
             this.tableLayoutPanelMain.Controls.Add(this.panelBottomRight, 2, 2);
             this.tableLayoutPanelMain.Controls.Add(this.panelBottom, 1, 2);
             this.tableLayoutPanelMain.Controls.Add(this.panelBottomLeft, 0, 2);
@@ -423,10 +410,10 @@
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(13, 3);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             this.tableLayoutPanelMain.RowCount = 3;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1290, 710);
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1097, 710);
             this.tableLayoutPanelMain.TabIndex = 33;
             // 
             // panelBottomRight
@@ -434,16 +421,16 @@
             this.panelBottomRight.Controls.Add(this.pictureBoxManagement);
             this.panelBottomRight.Controls.Add(this.buttonManagement);
             this.panelBottomRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBottomRight.Location = new System.Drawing.Point(970, 535);
+            this.panelBottomRight.Location = new System.Drawing.Point(819, 535);
             this.panelBottomRight.Name = "panelBottomRight";
-            this.panelBottomRight.Size = new System.Drawing.Size(317, 172);
+            this.panelBottomRight.Size = new System.Drawing.Size(275, 172);
             this.panelBottomRight.TabIndex = 8;
             // 
             // pictureBoxManagement
             // 
             this.pictureBoxManagement.BackColor = System.Drawing.Color.RoyalBlue;
             this.pictureBoxManagement.Image = global::burda.Properties.Resources.login;
-            this.pictureBoxManagement.Location = new System.Drawing.Point(270, 125);
+            this.pictureBoxManagement.Location = new System.Drawing.Point(225, 125);
             this.pictureBoxManagement.Name = "pictureBoxManagement";
             this.pictureBoxManagement.Size = new System.Drawing.Size(40, 40);
             this.pictureBoxManagement.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -457,7 +444,7 @@
             this.buttonManagement.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonManagement.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonManagement.ForeColor = System.Drawing.Color.Beige;
-            this.buttonManagement.Location = new System.Drawing.Point(195, 120);
+            this.buttonManagement.Location = new System.Drawing.Point(150, 120);
             this.buttonManagement.Name = "buttonManagement";
             this.buttonManagement.Size = new System.Drawing.Size(120, 50);
             this.buttonManagement.TabIndex = 35;
@@ -483,7 +470,7 @@
             this.panelBottom.Controls.Add(this.buttonNum6);
             this.panelBottom.Controls.Add(this.buttonNum7);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBottom.Location = new System.Drawing.Point(325, 535);
+            this.panelBottom.Location = new System.Drawing.Point(174, 535);
             this.panelBottom.Name = "panelBottom";
             this.panelBottom.Size = new System.Drawing.Size(639, 172);
             this.panelBottom.TabIndex = 7;
@@ -492,7 +479,7 @@
             // 
             this.pictureBoxHere.BackColor = System.Drawing.Color.DarkGreen;
             this.pictureBoxHere.Image = global::burda.Properties.Resources.approval;
-            this.pictureBoxHere.Location = new System.Drawing.Point(345, 125);
+            this.pictureBoxHere.Location = new System.Drawing.Point(325, 125);
             this.pictureBoxHere.Name = "pictureBoxHere";
             this.pictureBoxHere.Size = new System.Drawing.Size(40, 40);
             this.pictureBoxHere.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -504,7 +491,7 @@
             // 
             this.buttonNum0.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum0.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum0.Location = new System.Drawing.Point(350, 85);
+            this.buttonNum0.Location = new System.Drawing.Point(330, 85);
             this.buttonNum0.Name = "buttonNum0";
             this.buttonNum0.Size = new System.Drawing.Size(40, 34);
             this.buttonNum0.TabIndex = 47;
@@ -516,7 +503,7 @@
             // 
             this.buttonNumDel.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNumDel.ForeColor = System.Drawing.Color.Red;
-            this.buttonNumDel.Location = new System.Drawing.Point(350, 5);
+            this.buttonNumDel.Location = new System.Drawing.Point(330, 5);
             this.buttonNumDel.Name = "buttonNumDel";
             this.buttonNumDel.Size = new System.Drawing.Size(40, 34);
             this.buttonNumDel.TabIndex = 39;
@@ -528,7 +515,7 @@
             // 
             this.buttonNumClear.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNumClear.ForeColor = System.Drawing.Color.Yellow;
-            this.buttonNumClear.Location = new System.Drawing.Point(350, 45);
+            this.buttonNumClear.Location = new System.Drawing.Point(330, 45);
             this.buttonNumClear.Name = "buttonNumClear";
             this.buttonNumClear.Size = new System.Drawing.Size(40, 34);
             this.buttonNumClear.TabIndex = 43;
@@ -540,7 +527,7 @@
             // 
             this.buttonNum3.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum3.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum3.Location = new System.Drawing.Point(300, 85);
+            this.buttonNum3.Location = new System.Drawing.Point(280, 85);
             this.buttonNum3.Name = "buttonNum3";
             this.buttonNum3.Size = new System.Drawing.Size(40, 34);
             this.buttonNum3.TabIndex = 46;
@@ -552,7 +539,7 @@
             // 
             this.buttonNum2.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum2.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum2.Location = new System.Drawing.Point(250, 85);
+            this.buttonNum2.Location = new System.Drawing.Point(230, 85);
             this.buttonNum2.Name = "buttonNum2";
             this.buttonNum2.Size = new System.Drawing.Size(40, 34);
             this.buttonNum2.TabIndex = 45;
@@ -564,7 +551,7 @@
             // 
             this.buttonNum1.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum1.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum1.Location = new System.Drawing.Point(200, 85);
+            this.buttonNum1.Location = new System.Drawing.Point(180, 85);
             this.buttonNum1.Name = "buttonNum1";
             this.buttonNum1.Size = new System.Drawing.Size(40, 34);
             this.buttonNum1.TabIndex = 44;
@@ -576,7 +563,7 @@
             // 
             this.buttonNum4.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum4.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum4.Location = new System.Drawing.Point(200, 45);
+            this.buttonNum4.Location = new System.Drawing.Point(180, 45);
             this.buttonNum4.Name = "buttonNum4";
             this.buttonNum4.Size = new System.Drawing.Size(40, 34);
             this.buttonNum4.TabIndex = 40;
@@ -588,7 +575,7 @@
             // 
             this.buttonNum9.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum9.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum9.Location = new System.Drawing.Point(300, 5);
+            this.buttonNum9.Location = new System.Drawing.Point(280, 5);
             this.buttonNum9.Name = "buttonNum9";
             this.buttonNum9.Size = new System.Drawing.Size(40, 34);
             this.buttonNum9.TabIndex = 38;
@@ -600,7 +587,7 @@
             // 
             this.buttonNum5.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum5.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum5.Location = new System.Drawing.Point(250, 45);
+            this.buttonNum5.Location = new System.Drawing.Point(230, 45);
             this.buttonNum5.Name = "buttonNum5";
             this.buttonNum5.Size = new System.Drawing.Size(40, 34);
             this.buttonNum5.TabIndex = 41;
@@ -612,7 +599,7 @@
             // 
             this.buttonNum8.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum8.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum8.Location = new System.Drawing.Point(250, 5);
+            this.buttonNum8.Location = new System.Drawing.Point(230, 5);
             this.buttonNum8.Name = "buttonNum8";
             this.buttonNum8.Size = new System.Drawing.Size(40, 34);
             this.buttonNum8.TabIndex = 37;
@@ -624,7 +611,7 @@
             // 
             this.buttonNum6.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum6.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum6.Location = new System.Drawing.Point(300, 45);
+            this.buttonNum6.Location = new System.Drawing.Point(280, 45);
             this.buttonNum6.Name = "buttonNum6";
             this.buttonNum6.Size = new System.Drawing.Size(40, 34);
             this.buttonNum6.TabIndex = 42;
@@ -636,7 +623,7 @@
             // 
             this.buttonNum7.BackColor = System.Drawing.Color.SlateGray;
             this.buttonNum7.ForeColor = System.Drawing.Color.Lime;
-            this.buttonNum7.Location = new System.Drawing.Point(200, 5);
+            this.buttonNum7.Location = new System.Drawing.Point(180, 5);
             this.buttonNum7.Name = "buttonNum7";
             this.buttonNum7.Size = new System.Drawing.Size(40, 34);
             this.buttonNum7.TabIndex = 36;
@@ -651,7 +638,7 @@
             this.panelBottomLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBottomLeft.Location = new System.Drawing.Point(3, 535);
             this.panelBottomLeft.Name = "panelBottomLeft";
-            this.panelBottomLeft.Size = new System.Drawing.Size(316, 172);
+            this.panelBottomLeft.Size = new System.Drawing.Size(165, 172);
             this.panelBottomLeft.TabIndex = 6;
             // 
             // pictureBoxHelpDesk
@@ -681,9 +668,9 @@
             this.panelRight.Controls.Add(this.labelTeacherName);
             this.panelRight.Controls.Add(this.labelLessonName);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRight.Location = new System.Drawing.Point(970, 180);
+            this.panelRight.Location = new System.Drawing.Point(819, 180);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(317, 349);
+            this.panelRight.Size = new System.Drawing.Size(275, 349);
             this.panelRight.TabIndex = 5;
             // 
             // labelTimeDivider
@@ -737,11 +724,15 @@
             // panelBody
             // 
             this.panelBody.Controls.Add(this.labelStatus);
+            this.panelBody.Controls.Add(this.labelStudentNameLbl);
             this.panelBody.Controls.Add(this.pictureBoxStudentProfilePicture);
             this.panelBody.Controls.Add(this.labelStudentIdLblBottom);
+            this.panelBody.Controls.Add(this.labelStudentName);
             this.panelBody.Controls.Add(this.maskedTextBoxStudentId);
+            this.panelBody.Controls.Add(this.labelStudentId);
+            this.panelBody.Controls.Add(this.labelStudentIdLbl);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBody.Location = new System.Drawing.Point(325, 180);
+            this.panelBody.Location = new System.Drawing.Point(174, 180);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(639, 349);
             this.panelBody.TabIndex = 4;
@@ -751,7 +742,7 @@
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStatus.ForeColor = System.Drawing.Color.Lime;
-            this.labelStatus.Location = new System.Drawing.Point(200, 275);
+            this.labelStatus.Location = new System.Drawing.Point(180, 250);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(128, 18);
             this.labelStatus.TabIndex = 49;
@@ -770,7 +761,7 @@
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelLeft.Location = new System.Drawing.Point(3, 180);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(316, 349);
+            this.panelLeft.Size = new System.Drawing.Size(165, 349);
             this.panelLeft.TabIndex = 3;
             // 
             // labelLastReadTimeLbl
@@ -827,22 +818,17 @@
             // 
             this.panelTopRight.Controls.Add(this.pictureBoxTbmyo);
             this.panelTopRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTopRight.Location = new System.Drawing.Point(970, 3);
+            this.panelTopRight.Location = new System.Drawing.Point(819, 3);
             this.panelTopRight.Name = "panelTopRight";
-            this.panelTopRight.Size = new System.Drawing.Size(317, 171);
+            this.panelTopRight.Size = new System.Drawing.Size(275, 171);
             this.panelTopRight.TabIndex = 2;
             // 
             // panelHeader
             // 
             this.panelHeader.Controls.Add(this.labelTitle);
-            this.panelHeader.Controls.Add(this.labelStudentNameLbl);
             this.panelHeader.Controls.Add(this.labelDateCurrent);
-            this.panelHeader.Controls.Add(this.labelStudentName);
-            this.panelHeader.Controls.Add(this.labelDate);
-            this.panelHeader.Controls.Add(this.labelStudentId);
-            this.panelHeader.Controls.Add(this.labelStudentIdLbl);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelHeader.Location = new System.Drawing.Point(325, 3);
+            this.panelHeader.Location = new System.Drawing.Point(174, 3);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(639, 171);
             this.panelHeader.TabIndex = 1;
@@ -853,7 +839,7 @@
             this.panelTopLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTopLeft.Location = new System.Drawing.Point(3, 3);
             this.panelTopLeft.Name = "panelTopLeft";
-            this.panelTopLeft.Size = new System.Drawing.Size(316, 171);
+            this.panelTopLeft.Size = new System.Drawing.Size(165, 171);
             this.panelTopLeft.TabIndex = 0;
             // 
             // MainForm
@@ -865,7 +851,7 @@
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CancelButton = this.buttonManagement;
-            this.ClientSize = new System.Drawing.Size(1316, 726);
+            this.ClientSize = new System.Drawing.Size(1123, 726);
             this.Controls.Add(this.tableLayoutPanelMain);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -913,7 +899,6 @@
         private System.Windows.Forms.Label labelDateCurrent;
         private System.Windows.Forms.ComboBox comboBoxClassrooms;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.Label labelTeacherName;
         private System.Windows.Forms.Label labelTeacherLbl;
         private System.Windows.Forms.Label labelLessonName;

@@ -17,16 +17,34 @@ namespace burda.Views
     {
         InitializeComponent();
     }
-    private async Task HelpDeskPanel_LoadAsync(object sender, EventArgs e)
+    private void HelpDeskPanel_Load(object sender, EventArgs e)
     {
 
             buttonSend.Enabled = false;
             textBoxEmail.Text = "";
             richTextBoxMessage.Text = "";
             textBoxEmail.Focus();
-            await Logger.Information("Views: HelpDeskPanel loaded.");
     }
 
+        private void buttonSend_Click(object sender, EventArgs e)
+        {
+            string email = textBoxEmail.Text;
+            string message = richTextBoxMessage.Text;
+            if (email == "" || message == "")
+            {
+                MessageBox.Show("Lütfen e-posta adresinizi ve mesajınızı giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!email.Contains("@") || !email.Contains("."))
+            {
+                MessageBox.Show("Lütfen geçerli bir e-posta adresi giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Mesajınız başarıyla gönderildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            textBoxEmail.Text = "";
+            richTextBoxMessage.Text = "";
+            textBoxEmail.Focus();
+        }
 
         private void textBoxEmail_TextChanged(object sender, EventArgs e)
         {
@@ -64,5 +82,7 @@ namespace burda.Views
         {
             this.Close();
         }
+
+
     }
 }
