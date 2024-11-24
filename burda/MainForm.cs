@@ -20,6 +20,7 @@ namespace burda
     public partial class MainForm : BaseForm
     {
         private Timer timer1;
+        private Timer timer2;
 
         public MainForm()
         {
@@ -43,13 +44,18 @@ namespace burda
             labelLessonStartTime.Text = classrooms[0].StartTime.ToString();
             labelLessonEndTime.Text = classrooms[0].EndTime.ToString();
 
-            maskedTextBoxStudentId.Text = "";
+            maskedTextBoxClear();
             labelStatus.Text = "";
             labelStatus.Visible = true;
             labelCardReaderStatus.Text = "Bağlı Değil";
             labelDateCurrent.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            maskedTextBoxStudentId.Focus();
             labelCurrentStudentCount.Text = "0";
+
+            timer2 = new Timer();
+            timer2.Interval = 10000;
+            timer2.Tick += timer2_Tick;
+            timer2.Start();
+
             timer1 = new Timer();
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
@@ -59,6 +65,12 @@ namespace burda
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.labelDateCurrent.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        }
+
+        private async void timer2_Tick(object sender, EventArgs e)
+        {
+            Gist gist = new Gist();
+            await gist.SyncGistPeriodically(10000);
         }
 
         private void buttonHelpDesk_Click(object sender, EventArgs e)
@@ -79,9 +91,7 @@ namespace burda
             {
                 labelStatus.ForeColor = Color.Red;
                 labelStatus.Text = "Öğrenci Numarası Girin!";
-                maskedTextBoxStudentId.Text = "";
-                maskedTextBoxStudentId.Focus();
-                maskedTextBoxStudentId.SelectAll();
+                maskedTextBoxClear();
                 return;
             }
 
@@ -89,9 +99,7 @@ namespace burda
             {
                 labelStatus.ForeColor = Color.Red;
                 labelStatus.Text = "Öğrenci Bulunamadı!";
-                maskedTextBoxStudentId.Text = "";
-                maskedTextBoxStudentId.Focus();
-                maskedTextBoxStudentId.SelectAll();
+                maskedTextBoxClear();
                 return;
             }
             User student = userController.FindUserByStudentID(maskedTextBoxStudentId.Text);
@@ -108,9 +116,8 @@ namespace burda
 
                 attendanceController.AddAttendance(student, selectedClassRoom);
 
-                maskedTextBoxStudentId.Text = "";
-                maskedTextBoxStudentId.Focus();
-                maskedTextBoxStudentId.SelectAll();
+
+                maskedTextBoxClear();
 
                 labelStatus.ForeColor = Color.Lime;
                 labelStatus.Text = "Kayıt Başarılı!";
@@ -131,8 +138,6 @@ namespace burda
             labelLastCardID.Text = student.RFIDCard.RFIDNumber;
             labelCurrentStudentCount.Text = (Convert.ToInt32(labelCurrentStudentCount.Text) + 1).ToString();
             labelLastReadTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-
-
 
 
 
@@ -172,6 +177,13 @@ namespace burda
             }
         }
 
+
+        private void maskedTextBoxClear()
+        {
+            maskedTextBoxStudentId.Text = "";
+            maskedTextBoxStudentId.Focus();
+            maskedTextBoxStudentId.SelectAll();
+        }
 
         private void maskedTextBoxStudentId_KeyDown(object sender, KeyEventArgs e)
         {
@@ -283,8 +295,6 @@ namespace burda
             maskedTextBoxStudentId.Text = "";
             maskedTextBoxStudentId.Focus();
             maskedTextBoxStudentId.SelectAll();
-
-
         }
 
         private void buttonNumDel_Click(object sender, EventArgs e)

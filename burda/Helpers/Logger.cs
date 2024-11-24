@@ -16,13 +16,16 @@ namespace burda.Helpers
         static Logger()
         {
             var logDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
-            if (!Directory.Exists(logDirectory))
+            var logFile = Path.Combine(logDirectory, "log.txt");
+            if (!Directory.Exists(logDirectory) || !File.Exists(logFile))
             {
                 Directory.CreateDirectory(logDirectory);
+                File.Create(logFile).Close();
             }
 
             _logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
+                .WriteTo.File(logFile, rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 
             _logger.Information("Logger initialized.");
@@ -38,6 +41,7 @@ namespace burda.Helpers
                     Message = message,
                     LogTime = DateTime.Now
                 };
+
                 context.Logs.Add(logEntry);
                 await context.SaveChangesAsync();
             }

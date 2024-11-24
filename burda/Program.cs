@@ -31,30 +31,6 @@ namespace burda
             }
         }
 
-        public static async Task SyncGist()
-        {
-            try
-            {
-                // Gist verisini çekmek ve senkronizasyon işlemi
-                Gist gistService = new Gist();
-                Json jsonParser = new Json();
-                DbSync databaseSyncService = new DbSync();
 
-                // Gist verisini çek
-                var jsonData = await gistService.FetchGistDataAsync();
-
-                // JSON verisini parse et
-                var cards = jsonParser.ParseRFIDCards(jsonData);
-
-                // Veritabanı ile senkronize et
-                await databaseSyncService.SyncWithDatabaseAsync(cards);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Hata oluştu: " + ex.Message);
-                await Logger.Error("An error occurred during data synchronization", ex);
-            }
-        }
     }
 }

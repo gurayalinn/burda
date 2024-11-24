@@ -8,9 +8,11 @@ namespace burda.Helpers
 {
     public class Json
     {
+        public List<RFIDCard> gistCards;
+
         public List<RFIDCard> ParseRFIDCards(string json)
         {
-            List<RFIDCard> cards = new List<RFIDCard>();
+            gistCards = new List<RFIDCard>();
 
             try
             {
@@ -43,7 +45,7 @@ namespace burda.Helpers
                                 card.RawData = rawDataElement.GetRawText();
                             }
 
-                            cards.Add(card);
+                            gistCards.Add(card);
                         }
                     }
                     else
@@ -57,7 +59,7 @@ namespace burda.Helpers
                 Console.WriteLine($"JSON parsing hatası: {ex.Message}");
             }
 
-            return cards;
+            return gistCards;
         }
     }
 }

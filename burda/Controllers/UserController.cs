@@ -22,7 +22,7 @@ namespace burda.Controllers
 
         public User Login(string email, string password)
         {
-            return _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            return _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password && u.Role.RoleName != "STUDENT");
         }
 
         public User FindUserByStudentID(string StudentID)

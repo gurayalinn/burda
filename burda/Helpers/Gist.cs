@@ -26,7 +26,7 @@ namespace burda.Helpers
                 };
 
                 var response = await client.GetStringAsync(gistUrl);
-                await Logger.Information("Gist fetched.");
+                //Console.WriteLine("Gist fetched.");
                 return response;
             }
             catch (HttpRequestException httpEx)
@@ -40,5 +40,32 @@ namespace burda.Helpers
                 return string.Empty;
             }
         }
+
+        public async Task SyncGist()
+        {
+            try
+            {
+                Gist gistService = new Gist();
+                Json jsonParser = new Json();
+                DbSync databaseSyncService = new DbSync();
+                var jsonData = await gistService.FetchGistDataAsync();
+                var gistCards = jsonParser.ParseRFIDCards(jsonData);
+                await databaseSyncService.SyncWithDatabaseAsync(gistCards);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Hata oluştu: " + ex.Message);
+            }
+        }
+
+        public async Task SyncGistPeriodically(int interval)
+        {
+            while (true)
+            {
+                await SyncGist();
+                await Task.Delay(interval);
+            }
+        }
+
     }
 }

@@ -128,6 +128,7 @@
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxClose.TabIndex = 58;
             this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             // 
             // buttonClose
             // 
@@ -145,6 +146,7 @@
             this.buttonClose.TabIndex = 6;
             this.buttonClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonClose.UseVisualStyleBackColor = false;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
             // pictureBoxLogo
             // 

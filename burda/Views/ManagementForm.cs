@@ -48,17 +48,26 @@ namespace burda.Views
         {
             if (LoginForm.loggedUser != null)
             {
+
+                linkLabelUser.Text = LoginForm.loggedUser.FullName;
+
                 if (LoginForm.loggedUser.Role.RoleName == "ADMIN")
                 {
                     buttonUsers.Visible = true;
+                    pictureBoxUsers.Visible = true;
                     buttonCards.Visible = true;
+                    pictureBoxCards.Visible = true;
                     buttonSettings.Visible = true;
+                    pictureBoxSettings.Visible = true;
                 }
                 else
                 {
                     buttonUsers.Visible = false;
+                    pictureBoxUsers.Visible = false;
+                    radioButtonUsers.Visible = false;
                     buttonCards.Visible = false;
-                    buttonSettings.Visible = false;
+                    pictureBoxCards.Visible = false;
+                    radioButtonCards.Visible = false;
                 }
             }
             else
@@ -216,6 +225,7 @@ namespace burda.Views
 
         private void linkLabelUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            //UserProfileForm form = new UserProfileForm(LoginForm.loggedUser);
 
 
         }

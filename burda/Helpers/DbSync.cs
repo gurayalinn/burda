@@ -14,7 +14,9 @@ namespace burda.Helpers
 {
     internal class DbSync
     {
-        private AppDbContext context;
+        private readonly AppDbContext context;
+        // List<RFIDCard> existingCards;
+        //private List<RFIDCard> updatedCards;
 
         public DbSync()
         {
@@ -22,45 +24,53 @@ namespace burda.Helpers
         }
 
         // Veritabanında yeni kart ekleme ve var olanları güncelleme
-        public async Task SyncWithDatabaseAsync(List<RFIDCard> cards)
+        public async Task SyncWithDatabaseAsync(List<RFIDCard> gistCards)
         {
             try
             {
-                if (cards == null || cards.Count == 0)
+                if (gistCards == null || gistCards.Count == 0)
                 {
                     Console.WriteLine("Senkronize edilecek veri bulunamadı.");
                     return;
                 }
 
-                using (var transaction = context.Database.BeginTransaction()) // Transaction başlat
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    foreach (var card in cards)
+                    foreach (var gistCard in gistCards)
                     {
-                        if (card == null || string.IsNullOrEmpty(card.RFIDNumber))
+                        if (gistCard == null || string.IsNullOrEmpty(gistCard.RFIDNumber))
                         {
-                            Console.WriteLine($"Geçersiz kart verisi: {card?.RFIDNumber}. Veri eklenmeyecek.");
+                            Console.WriteLine($"Geçersiz kart verisi. Veri eklenmeyecek.");
                             continue;
                         }
 
-                        var existingCard = await FindExistingCardAsync(card.RFIDNumber);
+                        var existingCard = await FindExistingCardAsync(gistCard.RFIDNumber);
+                        existingCards = await context.RFIDCards.ToListAsync();
 
-                        if (existingCard != null)
+                        if (existingCard == null)
                         {
-                            // Var olan kartı güncelle
-                            await UpdateCardAsync(existingCard, card);
+                            context.RFIDCards.Add(gistCard);
+                            Console.WriteLine($"Yeni kart eklendi: {gistCard.RFIDNumber}");
+                            continue;
+
                         }
-                        else
+                        if (existingCard != null && existingCard.UpdatedDate == gistCard.UpdatedDate)
                         {
-                            // Yeni kart ekle
-                            await AddNewCardAsync(card);
+                            //Console.WriteLine($"Kart zaten güncel: {gistCard.RFIDNumber}");
+                            continue;
                         }
+                        if (existingCard != null && existingCard.UpdatedDate > gistCard.UpdatedDate && existingCard.UpdatedDate != gistCard.UpdatedDate)
+                        {
+                            existingCard.UpdatedDate = gistCard.UpdatedDate;
+                            //Console.WriteLine($"Kart güncellendi: {gistCard.RFIDNumber}");
+                            continue;
+                        }
+
+
                     }
-
-                    // Veritabanını güncelle
                     await context.SaveChangesAsync();
                     transaction.Commit();
-                    await Logger.Information("Gist verisi senkronize edildi.");
-                    Console.WriteLine("Veri başarıyla senkronize edildi.");
+                    //Console.WriteLine("Senkronizasyon tamamlandı.");
                 }
             }
             catch (DbEntityValidationException ex)
@@ -69,11 +79,11 @@ namespace burda.Helpers
             }
             catch (DbUpdateException ex)
             {
-                await HandleDbUpdateExceptionAsync(ex);
+                Console.WriteLine($"Veritabanı güncelleme hatası: {ex.Message}");
             }
             catch (Exception ex)
             {
-                await HandleGeneralExceptionAsync(ex);
+                Console.WriteLine($"Senkronizasyon hatası: {ex.Message}");
             }
         }
 
@@ -82,93 +92,6 @@ namespace burda.Helpers
         {
             return await context.RFIDCards
                 .FirstOrDefaultAsync(c => c.RFIDNumber == rfidNumber);
-        }
-
-        // Yeni kartı ekler
-        private async Task AddNewCardAsync(RFIDCard card)
-        {
-            context.RFIDCards.Add(card);
-            Console.WriteLine($"Yeni kart eklendi: {card.RFIDNumber}");
-            await Logger.Information($"Yeni kart eklendi: {card.RFIDNumber}");
-        }
-
-        // Var olan kartı günceller
-        private async Task<bool> UpdateCardAsync(RFIDCard existingCard, RFIDCard newCard)
-        {
-            if (!IsCardDataValid(existingCard, newCard))
-            {
-                Console.WriteLine("Kart verisi geçersiz veya eksik, güncelleme yapılmadı.");
-                return false;
-            }
-
-            bool isUpdated = false;
-
-            // Use local variables to allow 'ref' usage
-            var rfidNumber = existingCard.RFIDNumber;
-            var rawData = existingCard.RawData;
-            var updatedDate = existingCard.UpdatedDate;
-            var createdDate = existingCard.CreatedDate;
-
-            try
-            {
-                // Update fields if they differ
-                isUpdated |= UpdateFieldIfDifferent(ref rfidNumber, newCard.RFIDNumber, "RFIDNumber");
-                isUpdated |= UpdateFieldIfDifferent(ref rawData, newCard.RawData, "RawData");
-                isUpdated |= UpdateFieldIfDifferent(ref updatedDate, newCard.UpdatedDate, "UpdatedDate");
-                isUpdated |= UpdateFieldIfDifferent(ref createdDate, newCard.CreatedDate, "CreatedDate");
-
-                // Assign back to properties only if updates were made
-                if (isUpdated)
-                {
-                    existingCard.RFIDNumber = rfidNumber;
-                    existingCard.RawData = rawData;
-                    existingCard.UpdatedDate = updatedDate;
-                    existingCard.CreatedDate = createdDate;
-
-                    context.Entry(existingCard).State = EntityState.Modified;
-                    Console.WriteLine($"Kart güncellendi: {newCard.RFIDNumber}");
-                    await Logger.Information($"Kart güncellendi: {newCard.RFIDNumber}");
-                }
-                else
-                {
-                    Console.WriteLine("Kartta güncellenmesi gereken bir değişiklik bulunamadı.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Kart güncellemesi sırasında hata oluştu: {ex.Message}");
-                return false;
-            }
-
-            return isUpdated;
-        }
-
-        private bool IsCardDataValid(RFIDCard existingCard, RFIDCard newCard)
-        {
-            if (existingCard == null || newCard == null)
-            {
-                Console.WriteLine("Kart verisi null.");
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(existingCard.RawData) || string.IsNullOrEmpty(newCard.RawData))
-            {
-                Console.WriteLine("Kart verisi boş.");
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool UpdateFieldIfDifferent<T>(ref T existingValue, T newValue, string fieldName)
-        {
-            if (!EqualityComparer<T>.Default.Equals(existingValue, newValue))
-            {
-                existingValue = newValue;
-                Console.WriteLine($"{fieldName} güncellendi: {newValue}");
-                return true;
-            }
-            return false;
         }
 
         // Entity validation hatalarını loglar
@@ -186,22 +109,5 @@ namespace burda.Helpers
             Console.WriteLine(sb.ToString());
         }
 
-        // DbUpdateException hatalarını loglar
-        private async Task HandleDbUpdateExceptionAsync(DbUpdateException ex)
-        {
-            Console.WriteLine("Veri güncellenirken bir hata oluştu.");
-            Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
-            Console.WriteLine($"Stack Trace: {ex.StackTrace}");
-            await Logger.Error("Veri güncellenirken bir hata oluştu.", ex);
-        }
-
-        // Diğer genel hataları loglar
-        private async Task HandleGeneralExceptionAsync(Exception ex)
-        {
-            Console.WriteLine($"Beklenmeyen hata: {ex.Message}");
-            Console.WriteLine($"Hata Detayı: {ex.InnerException?.Message}");
-            Console.WriteLine($"Stack Trace: {ex.StackTrace}");
-            await Logger.Error("Beklenmeyen hata oluştu.", ex);
-        }
     }
 }

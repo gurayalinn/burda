@@ -12,13 +12,20 @@ namespace burda.Helpers
     {
         public static void ReadName(string name)
         {
-            using (SpeechSynthesizer synthesizer = new SpeechSynthesizer())
+            try
             {
-                synthesizer.Rate = -2;
-                synthesizer.Volume = 100;
-                synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult);
+                using (SpeechSynthesizer synthesizer = new SpeechSynthesizer())
+                {
+                    synthesizer.Rate = -2;
+                    synthesizer.Volume = 100;
+                    synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Teen);
 
-                synthesizer.Speak($"{name}");
+                    synthesizer.Speak($"{name}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error reading name: " + ex.Message);
             }
         }
     }
