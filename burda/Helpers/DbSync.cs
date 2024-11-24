@@ -45,7 +45,7 @@ namespace burda.Helpers
                         }
 
                         var existingCard = await FindExistingCardAsync(gistCard.RFIDNumber);
-                        existingCards = await context.RFIDCards.ToListAsync();
+                        //existingCards = await context.RFIDCards.ToListAsync();
 
                         if (existingCard == null)
                         {
