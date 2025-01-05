@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -34,22 +35,39 @@ namespace burda
             ClassRoomController classRoomController = new ClassRoomController();
             List<ClassRoom> classrooms = classRoomController.GetAllClassRooms();
             comboBoxClassrooms.DataSource = classrooms;
+            ClassRoom selectedClassRoom = classrooms.FirstOrDefault();
+            comboBoxClassrooms.SelectedItem = selectedClassRoom;
             comboBoxClassrooms.ValueMember = "ID";
             comboBoxClassrooms.DisplayMember = "ClassName";
             comboBoxClassrooms.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxClassrooms.SelectedIndex = 0;
+            if (classrooms.Count > 0)
+            {
+            labelTeacherName.ForeColor = Color.Lime;
+                
+            labelLessonName.Text = selectedClassRoom.LessonName;
+                if (selectedClassRoom.Teacher != null)
+                {
+                    labelTeacherName.Text = selectedClassRoom.Teacher.FullName;
+                }
+                else
+                {
+                    labelTeacherName.Text = "Öğretmen Yok";
+                    labelTeacherName.ForeColor = Color.Red;
+                }
 
-            labelLessonName.Text = classrooms[0].LessonName;
-            labelTeacherName.Text = classrooms[0].Teacher.FullName;
-            labelLessonStartTime.Text = classrooms[0].StartTime.ToString();
-            labelLessonEndTime.Text = classrooms[0].EndTime.ToString();
+                List<Attendance> todayAttendances = classRoomController.GetAttendanceListToday(selectedClassRoom.ID);
+                labelCurrentStudentCount.Text = todayAttendances.Count.ToString();
+
+                labelLessonStartTime.Text = selectedClassRoom.StartTime.Hours.ToString() + ":" + selectedClassRoom.StartTime.Minutes.ToString();
+                labelLessonEndTime.Text = selectedClassRoom.EndTime.Hours.ToString() + ":" + selectedClassRoom.EndTime.Minutes.ToString();
+                }
+
 
             maskedTextBoxClear();
             labelStatus.Text = "";
             labelStatus.Visible = true;
             labelCardReaderStatus.Text = "Bağlı Değil";
             labelDateCurrent.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            labelCurrentStudentCount.Text = "0";
 
             timer2 = new Timer();
             timer2.Interval = 10000;
@@ -114,7 +132,29 @@ namespace burda
 
                 ClassRoom selectedClassRoom = (ClassRoom)comboBoxClassrooms.SelectedItem;
 
-                attendanceController.AddAttendance(student, selectedClassRoom);
+
+                Attendance attendance = new Attendance()
+                {
+                    UserID = student.ID,
+                    ClassID = selectedClassRoom.ID,
+                    AttType = "NUM",
+                    AttTime = DateTime.Now,
+                };
+
+                attendanceController.AddAttendance(attendance);
+
+               
+                EmailHelper emailHelper = new EmailHelper();
+                bool isSuccess = emailHelper.SendEmail(student.Email, 
+                    "Yoklama", "Yoklama başarıyla alındı." +
+                    " Sınıf: " + selectedClassRoom.ClassName +
+                    " Ders: " + selectedClassRoom.LessonName +
+                    " Öğretmen: " + selectedClassRoom.Teacher.FullName +
+                    " Tarih: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+
+                ClassRoomController classRoomController = new ClassRoomController();
+                List<Attendance> todayAttendances = classRoomController.GetAttendanceListToday(selectedClassRoom.ID);
+                labelCurrentStudentCount.Text = todayAttendances.Count.ToString();
 
 
                 maskedTextBoxClear();
@@ -135,8 +175,16 @@ namespace burda
         {
             labelStudentName.Text = student.FullName;
             labelStudentId.Text = student.StudentID;
-            labelLastCardID.Text = student.RFIDCard.RFIDNumber;
-            labelCurrentStudentCount.Text = (Convert.ToInt32(labelCurrentStudentCount.Text) + 1).ToString();
+            if (student.RFIDCard != null)
+            {
+                labelLastCardID.Text = student.RFIDCard.RFIDNumber;
+                labelLastCardID.ForeColor = Color.DarkGreen;
+            }
+            else
+            {
+                labelLastCardID.Text = "Kart Yok!";
+                labelLastCardID.ForeColor = Color.Red;
+            }
             labelLastReadTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 
 
@@ -306,14 +354,57 @@ namespace burda
 
         }
 
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void comboBoxClassrooms_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClassRoom selectedClassRoom = (ClassRoom)comboBoxClassrooms.SelectedItem;
-            labelLessonName.Text = selectedClassRoom.LessonName;
-            labelTeacherName.Text = selectedClassRoom.Teacher.FullName;
-            labelLessonStartTime.Text = selectedClassRoom.StartTime.ToString();
-            labelLessonEndTime.Text = selectedClassRoom.EndTime.ToString();
 
+            ClassRoomController classRoomController = new ClassRoomController();
+            List<Attendance> todayAttendances = classRoomController.GetAttendanceListToday(selectedClassRoom.ID);
+
+            labelLessonName.Text = selectedClassRoom.LessonName;
+            labelTeacherName.ForeColor = Color.Lime;
+            labelCurrentStudentCount.Text = todayAttendances.Count.ToString();
+
+            if (selectedClassRoom.Teacher != null)
+            {
+                labelTeacherName.Text = selectedClassRoom.Teacher.FullName;
+            }
+            else
+            {
+                labelTeacherName.Text = "Öğretmen Yok";
+                labelTeacherName.ForeColor = Color.Red;
+            }
+            labelLessonStartTime.Text = selectedClassRoom.StartTime.Hours + ":" + selectedClassRoom.StartTime.Minutes.ToString();
+            labelLessonEndTime.Text = selectedClassRoom.EndTime.Hours + ":" + selectedClassRoom.EndTime.Minutes.ToString();
+
+        }
+
+        private void pictureBoxClassList_Click(object sender, EventArgs e)
+        {
+            buttonClassList.PerformClick();
+        }
+
+        private void buttonClassList_Click(object sender, EventArgs e)
+        {
+            ClassRoom selectedClassRoom = (ClassRoom)comboBoxClassrooms.SelectedItem;
+            ClassListForm form = new ClassListForm(selectedClassRoom);
+            form.Show();
+        }
+
+        private void MainForm_FocusChanged(object sender, EventArgs e)
+        {
+            ClassRoomController classRoomController = new ClassRoomController();
+            List<ClassRoom> classrooms = classRoomController.GetAllClassRooms();
+            comboBoxClassrooms.DataSource = classrooms;
+            comboBoxClassrooms.ValueMember = "ID";
+            comboBoxClassrooms.DisplayMember = "ClassName";
+            comboBoxClassrooms.DropDownStyle = ComboBoxStyle.DropDownList;
         }
     }
 }

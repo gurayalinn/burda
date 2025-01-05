@@ -56,9 +56,10 @@
             this.buttonLogin.Enabled = false;
             this.buttonLogin.Font = new System.Drawing.Font("Cascadia Mono", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogin.ForeColor = System.Drawing.Color.Beige;
-            this.buttonLogin.Location = new System.Drawing.Point(5, 245);
+            this.buttonLogin.Location = new System.Drawing.Point(6, 317);
+            this.buttonLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(270, 40);
+            this.buttonLogin.Size = new System.Drawing.Size(338, 52);
             this.buttonLogin.TabIndex = 6;
             this.buttonLogin.Text = "Giriş Yap";
             this.buttonLogin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -70,10 +71,10 @@
             this.labelEmail.AutoSize = true;
             this.labelEmail.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEmail.ForeColor = System.Drawing.Color.Bisque;
-            this.labelEmail.Location = new System.Drawing.Point(5, 135);
+            this.labelEmail.Location = new System.Drawing.Point(6, 175);
             this.labelEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(64, 18);
+            this.labelEmail.Size = new System.Drawing.Size(80, 22);
             this.labelEmail.TabIndex = 2;
             this.labelEmail.Text = "E-mail:";
             this.labelEmail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -81,21 +82,21 @@
             // textBoxEmail
             // 
             this.textBoxEmail.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.textBoxEmail.Location = new System.Drawing.Point(5, 160);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxEmail.Location = new System.Drawing.Point(6, 207);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(270, 23);
+            this.textBoxEmail.Size = new System.Drawing.Size(336, 27);
             this.textBoxEmail.TabIndex = 3;
             this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.textBoxPassword.Location = new System.Drawing.Point(5, 215);
-            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxPassword.Location = new System.Drawing.Point(6, 278);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.ShortcutsEnabled = false;
-            this.textBoxPassword.Size = new System.Drawing.Size(270, 23);
+            this.textBoxPassword.Size = new System.Drawing.Size(336, 27);
             this.textBoxPassword.TabIndex = 5;
             this.textBoxPassword.UseSystemPasswordChar = true;
             this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
@@ -105,10 +106,10 @@
             this.labelPassword.AutoSize = true;
             this.labelPassword.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPassword.ForeColor = System.Drawing.Color.Bisque;
-            this.labelPassword.Location = new System.Drawing.Point(5, 193);
+            this.labelPassword.Location = new System.Drawing.Point(6, 250);
             this.labelPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(56, 18);
+            this.labelPassword.Size = new System.Drawing.Size(70, 22);
             this.labelPassword.TabIndex = 4;
             this.labelPassword.Text = "Şifre:";
             this.labelPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -119,10 +120,10 @@
             this.labelTitle.BackColor = System.Drawing.Color.LightSlateGray;
             this.labelTitle.Font = new System.Drawing.Font("Cascadia Mono", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelTitle.ForeColor = System.Drawing.Color.DarkGreen;
-            this.labelTitle.Location = new System.Drawing.Point(45, 100);
+            this.labelTitle.Location = new System.Drawing.Point(56, 129);
             this.labelTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(182, 29);
+            this.labelTitle.Size = new System.Drawing.Size(225, 37);
             this.labelTitle.TabIndex = 1;
             this.labelTitle.Text = "YÖNETİM GİRİŞ";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -143,20 +144,20 @@
             this.panelLogin.Controls.Add(this.labelTitle);
             this.panelLogin.Controls.Add(this.buttonLogin);
             this.panelLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLogin.Location = new System.Drawing.Point(10, 11);
-            this.panelLogin.Margin = new System.Windows.Forms.Padding(2);
+            this.panelLogin.Location = new System.Drawing.Point(12, 14);
+            this.panelLogin.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(289, 339);
+            this.panelLogin.Size = new System.Drawing.Size(362, 439);
             this.panelLogin.TabIndex = 0;
             this.panelLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLogin_Paint);
             // 
             // pictureBoxAdmin
             // 
             this.pictureBoxAdmin.Image = global::burda.Properties.Resources.approval;
-            this.pictureBoxAdmin.Location = new System.Drawing.Point(125, 45);
-            this.pictureBoxAdmin.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxAdmin.Location = new System.Drawing.Point(156, 58);
+            this.pictureBoxAdmin.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBoxAdmin.Name = "pictureBoxAdmin";
-            this.pictureBoxAdmin.Size = new System.Drawing.Size(40, 39);
+            this.pictureBoxAdmin.Size = new System.Drawing.Size(50, 50);
             this.pictureBoxAdmin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxAdmin.TabIndex = 52;
             this.pictureBoxAdmin.TabStop = false;
@@ -165,22 +166,23 @@
             // pictureBoxTbmyo
             // 
             this.pictureBoxTbmyo.Image = global::burda.Properties.Resources.tbmyo;
-            this.pictureBoxTbmyo.Location = new System.Drawing.Point(205, 5);
-            this.pictureBoxTbmyo.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxTbmyo.Location = new System.Drawing.Point(256, 6);
+            this.pictureBoxTbmyo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBoxTbmyo.Name = "pictureBoxTbmyo";
-            this.pictureBoxTbmyo.Size = new System.Drawing.Size(80, 77);
+            this.pictureBoxTbmyo.Size = new System.Drawing.Size(100, 100);
             this.pictureBoxTbmyo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxTbmyo.TabIndex = 51;
             this.pictureBoxTbmyo.TabStop = false;
+            this.pictureBoxTbmyo.Click += new System.EventHandler(this.pictureBoxTbmyo_Click);
             // 
             // pictureBoxClose
             // 
             this.pictureBoxClose.BackColor = System.Drawing.Color.DarkRed;
             this.pictureBoxClose.Image = global::burda.Properties.Resources.exit;
-            this.pictureBoxClose.Location = new System.Drawing.Point(215, 298);
-            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxClose.Location = new System.Drawing.Point(269, 386);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(50, 35);
+            this.pictureBoxClose.Size = new System.Drawing.Size(62, 45);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxClose.TabIndex = 50;
             this.pictureBoxClose.TabStop = false;
@@ -195,10 +197,10 @@
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClose.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClose.ForeColor = System.Drawing.Color.Bisque;
-            this.buttonClose.Location = new System.Drawing.Point(210, 295);
-            this.buttonClose.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonClose.Location = new System.Drawing.Point(262, 382);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(60, 40);
+            this.buttonClose.Size = new System.Drawing.Size(75, 52);
             this.buttonClose.TabIndex = 8;
             this.buttonClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonClose.UseVisualStyleBackColor = false;
@@ -207,10 +209,10 @@
             // pictureBoxLogo
             // 
             this.pictureBoxLogo.Image = global::burda.Properties.Resources.clock;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(5, 5);
-            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(6, 6);
+            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(80, 77);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(100, 100);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 48;
             this.pictureBoxLogo.TabStop = false;
@@ -219,10 +221,10 @@
             // 
             this.pictureBoxLogin.BackColor = System.Drawing.Color.DarkGreen;
             this.pictureBoxLogin.Image = global::burda.Properties.Resources.check;
-            this.pictureBoxLogin.Location = new System.Drawing.Point(205, 250);
-            this.pictureBoxLogin.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxLogin.Location = new System.Drawing.Point(256, 324);
+            this.pictureBoxLogin.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBoxLogin.Name = "pictureBoxLogin";
-            this.pictureBoxLogin.Size = new System.Drawing.Size(60, 30);
+            this.pictureBoxLogin.Size = new System.Drawing.Size(75, 39);
             this.pictureBoxLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogin.TabIndex = 44;
             this.pictureBoxLogin.TabStop = false;
@@ -236,10 +238,10 @@
             this.buttonForget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonForget.Font = new System.Drawing.Font("Cascadia Mono", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonForget.ForeColor = System.Drawing.Color.Bisque;
-            this.buttonForget.Location = new System.Drawing.Point(5, 295);
-            this.buttonForget.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonForget.Location = new System.Drawing.Point(6, 382);
+            this.buttonForget.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.buttonForget.Name = "buttonForget";
-            this.buttonForget.Size = new System.Drawing.Size(160, 40);
+            this.buttonForget.Size = new System.Drawing.Size(200, 52);
             this.buttonForget.TabIndex = 7;
             this.buttonForget.Text = "Şifremi Unuttum ?";
             this.buttonForget.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -249,16 +251,16 @@
             // LoginForm
             // 
             this.AcceptButton = this.buttonLogin;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonClose;
-            this.ClientSize = new System.Drawing.Size(309, 361);
+            this.ClientSize = new System.Drawing.Size(386, 467);
             this.Controls.Add(this.panelLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MinimizeBox = false;
             this.Name = "LoginForm";
-            this.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.Padding = new System.Windows.Forms.Padding(12, 14, 12, 14);
             this.Text = "BURDA: YÖNETİM GİRİŞ";
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();

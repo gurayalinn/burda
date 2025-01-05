@@ -1,6 +1,6 @@
 ﻿namespace burda.Views
 {
-    partial class SettingsForm
+    partial class EditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // SettingsForm
+            // EditForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "SettingsForm";
-            this.Text = "BURDA";
+            this.ClientSize = new System.Drawing.Size(406, 450);
+            this.Name = "EditForm";
+            this.Text = "BURDA: DÜZENLE";
+            this.Load += new System.EventHandler(this.EditForm_Load);
             this.ResumeLayout(false);
 
         }

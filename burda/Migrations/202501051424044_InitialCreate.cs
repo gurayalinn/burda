@@ -28,7 +28,7 @@
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        TeacherID = c.Int(nullable: false),
+                        TeacherID = c.Int(),
                         ClassName = c.String(nullable: false, maxLength: 256),
                         LessonName = c.String(nullable: false, maxLength: 256),
                         ClassDate = c.DateTime(nullable: false),
@@ -100,6 +100,17 @@
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.Tickets",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Message = c.String(nullable: false),
+                        Email = c.String(nullable: false, maxLength: 254),
+                        CreatedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "dbo.UserClassRooms",
                 c => new
                     {
@@ -133,6 +144,7 @@
             DropIndex("dbo.Attendances", new[] { "ClassID" });
             DropIndex("dbo.Attendances", new[] { "UserID" });
             DropTable("dbo.UserClassRooms");
+            DropTable("dbo.Tickets");
             DropTable("dbo.Logs");
             DropTable("dbo.Roles");
             DropTable("dbo.RFIDCards");

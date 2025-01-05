@@ -51,5 +51,41 @@ namespace burda.Properties {
                 return ((string)(this["AdminPassword"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("murat.calis@uludag.edu.tr")]
+        public string UserEmail {
+            get {
+                return ((string)(this["UserEmail"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("123456")]
+        public string UserPassword {
+            get {
+                return ((string)(this["UserPassword"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("xdnx njql sxjr usfa")]
+        public string SMTP_PASSWORD {
+            get {
+                return ((string)(this["SMTP_PASSWORD"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("grienzdev@gmail.com")]
+        public string SMTP_MAIL {
+            get {
+                return ((string)(this["SMTP_MAIL"]));
+            }
+        }
     }
 }

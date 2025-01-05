@@ -88,7 +88,8 @@ namespace burda.Models
 
         public string FullName => $"{FirstName} {LastName}";
 
-
+        public string RoleName => Role?.RoleName;
 
     }
+
 }

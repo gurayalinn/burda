@@ -11,7 +11,7 @@ namespace burda.Models
         /*
         CREATE TABLE ClassRooms (
         ID INT PRIMARY KEY IDENTITY(1,1),
-        TeacherID INT NOT NULL,
+        TeacherID INT NULL,
         ClassName NVARCHAR(256) NOT NULL,
         LessonName NVARCHAR(256) NOT NULL,
         ClassDate DATE DEFAULT GETDATE(),
@@ -33,8 +33,7 @@ namespace burda.Models
         [Key]
         public int ID { get; set; }
 
-        [Required]
-        public int TeacherID { get; set; }
+        public int? TeacherID { get; set; }
 
         [Required, StringLength(256)]
         public string ClassName { get; set; }
@@ -57,5 +56,6 @@ namespace burda.Models
         public virtual ICollection<User> Students { get; set; }
 
         public virtual ICollection<Attendance> Attendances { get; set; }
+
     }
 }

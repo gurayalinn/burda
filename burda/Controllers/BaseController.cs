@@ -1,4 +1,5 @@
-﻿using System;
+﻿using burda.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace burda.Controllers
             }
         }
 
-        public void Delete(int id)
+        public void DeleteById(int id)
         {
             try
             {
@@ -70,6 +71,19 @@ namespace burda.Controllers
                 {
                     throw new Exception($"{typeof(T).Name} with ID {id} not found.");
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting {typeof(T).Name}: {ex.Message}");
+            }
+        }
+
+        public void Delete(T entity)
+        {
+            try
+            {
+                _context.Set<T>().Remove(entity);
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {

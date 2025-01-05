@@ -19,7 +19,6 @@ namespace burda
             try
             {
 
-                await Logger.Information("Program started.");
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());

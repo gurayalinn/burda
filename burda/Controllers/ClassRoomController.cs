@@ -1,4 +1,5 @@
-﻿using burda.Models;
+﻿using burda.Helpers;
+using burda.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,21 @@ namespace burda.Controllers
     {
         public ClassRoomController() : base()
         {
+        }
+
+        public bool AddClassRoom(ClassRoom NewClassRoom)
+        {
+            try
+            {
+                Create(NewClassRoom);
+                Logger.Information($"{NewClassRoom.ClassName} - {NewClassRoom.LessonName} sınıf oluşturuldu.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Error creating ClassRoom: {ex.Message}");
+                throw new Exception($"Error creating ClassRoom: {ex.Message}");
+            }
         }
 
 
@@ -62,6 +78,56 @@ namespace burda.Controllers
         public List<ClassRoom> FindClassesByIsExam(bool isExam)
         {
             return _context.ClassRooms.Where(c => c.IsExam == isExam).ToList();
+        }
+
+        public List<Attendance> GetAttendanceList(int ClassID)
+        {
+            return _context.Attendances.Where(a => a.ClassID == ClassID).ToList();
+        }
+
+        public List<Attendance> GetAttendanceListToday(int ClassID)
+        {
+            var today = DateTime.Now.Date;
+            return _context.Attendances
+                           .Where(a => a.ClassID == ClassID)
+                           .AsEnumerable()
+                           .Where(a => a.AttTime.Date == today)
+                           .ToList();
+        }
+
+        internal object Search(string text)
+        {
+            return _context.ClassRooms.Where(c => c.ClassName.Contains(text) || c.LessonName.Contains(text)).ToList();
+        }
+
+        public bool UpdateClassRoom(ClassRoom updatedClassRoom)
+        {
+            try
+            {
+                ClassRoom existingClassRoom = _context.ClassRooms.FirstOrDefault(c => c.ID == updatedClassRoom.ID);
+                if (existingClassRoom == null)
+                {
+                    throw new Exception("Sınıf bulunamadı.");
+                }
+
+                existingClassRoom.ClassName = updatedClassRoom.ClassName;
+                existingClassRoom.LessonName = updatedClassRoom.LessonName;
+                existingClassRoom.ClassDate = updatedClassRoom.ClassDate;
+                existingClassRoom.StartTime = updatedClassRoom.StartTime;
+                existingClassRoom.EndTime = updatedClassRoom.EndTime;
+                existingClassRoom.IsExam = updatedClassRoom.IsExam;
+                existingClassRoom.UpdatedDate = DateTime.Now;
+                existingClassRoom.TeacherID = updatedClassRoom.TeacherID;
+
+                Update(existingClassRoom);
+                Logger.Information($"{existingClassRoom.ClassName} - {existingClassRoom.LessonName} - {existingClassRoom.Teacher.FullName} sınıf güncellendi.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Error updating ClassRoom: {ex.Message}");
+                throw new Exception($"Error updating ClassRoom: {ex.Message}");
+            }
         }
     }
 }

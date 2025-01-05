@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using burda.Models;
 using burda.Controllers;
+using burda.Helpers;
 
 
 namespace burda.Views
@@ -68,6 +69,7 @@ namespace burda.Views
                 if (user != null)
                 {
                     loggedUser = user;
+                    Logger.Information("Giriş Yapıldı: " + user.FullName);
                     ManagementForm form = new ManagementForm(loggedUser);
                     form.Show();
                     this.Close();
@@ -133,6 +135,13 @@ namespace burda.Views
             textBoxPassword.Text = burda.Properties.Settings.Default.AdminPassword;
             buttonLogin.PerformClick();
 
+        }
+
+        private void pictureBoxTbmyo_Click(object sender, EventArgs e)
+        {
+            textBoxEmail.Text = burda.Properties.Settings.Default.UserEmail;
+            textBoxPassword.Text = burda.Properties.Settings.Default.UserPassword;
+            buttonLogin.PerformClick();
         }
     }
 }

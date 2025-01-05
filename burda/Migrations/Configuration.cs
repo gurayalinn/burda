@@ -225,7 +225,7 @@ namespace burda.Migrations
                     ID = 5,
                     ClassName = "BİL. LAB. 2",
                     TeacherID = 6,
-                    LessonName = "GÖRSEL PROGRAMLA",
+                    LessonName = "GÖRSEL PROGRAMLAMA",
                     ClassDate = new DateTime(2024, 10, 1),
                     StartTime = new TimeSpan(8, 30, 0),
                     EndTime = new TimeSpan(10, 0, 0),
@@ -281,7 +281,16 @@ namespace burda.Migrations
                 );
 
             context.Logs.AddOrUpdate(l => l.ID,
-                new Log { ID = 1, LogType = "INFO", Message = "System started.", LogTime = new DateTime(2024, 11, 1, 16, 15, 0) });
+                new Log { ID = 1, LogType = "INFO", Message = "System started.", LogTime = new DateTime(2024, 12, 30, 16, 15, 0) });
+
+            context.Tickets.AddOrUpdate(t => t.ID,
+                new Ticket
+                {
+                    ID = 1,
+                    Message = "Şifremi unuttum.",
+                    Email = "222203578@ogr.uludag.edu.tr",
+                    CreatedDate = new DateTime(2025, 1, 1, 16, 15, 0)
+                });
 
             try
             {

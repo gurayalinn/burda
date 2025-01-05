@@ -117,34 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="richTextBoxMessage.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="labelEmail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="textBoxEmail.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="labelTitle.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="buttonSend.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="labelMessage.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="pictureBoxLogo.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="pictureBoxTbmyo.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="panel1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
+  </data>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
+  </data>
 </root>

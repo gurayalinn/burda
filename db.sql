@@ -72,6 +72,14 @@ CREATE TABLE Logs (
 );
 GO
 
+CREATE TABLE Tickets (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    Message NVARCHAR(MAX) NOT NULL,
+    Email NVARCHAR(254) NOT NULL,
+    CreatedDate DATETIME DEFAULT GETDATE()
+	);
+GO
+
 INSERT INTO Roles (RoleName) VALUES 
 ('ADMIN'), 
 ('TEACHER'), 
@@ -133,4 +141,8 @@ INSERT INTO Logs (LogType, Message, LogTime) VALUES
 ('INFO', 'EMİRHAN UYSAL sisteme yeniden giriş yaptı.', '2024-10-01 11:00:00'),
 ('ERROR', 'RFID kart doğrulama hatası.', '2024-10-02 09:00:00'),
 ('INFO', 'Yeni kullanıcı kaydı eklendi: Öğrenci HİLMİ ENGİNAR.', '2024-10-02 12:00:00');
+GO
+
+INSERT INTO Tickets (Message, Email) VALUES (
+'Test', '222203578@ogr.uludag.edu.tr');
 GO

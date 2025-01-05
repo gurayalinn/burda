@@ -16,7 +16,7 @@ public class AppDbContext : DbContext
     public AppDbContext() : base("name=AppDbContext")
     {
         Database.SetInitializer<AppDbContext>(new CreateDatabaseIfNotExists<AppDbContext>());
-        // Update-Database -ConfigurationTypeName burda.Migrations.Configuration
+        //Update-Database -ConfigurationTypeName burda.Migrations.Configuration
         //Database.SetInitializer<AppDbContext>(new DropCreateDatabaseIfModelChanges<AppDbContext>());
         //Database.SetInitializer<AppDbContext>(new MigrateDatabaseToLatestVersion<AppDbContext, burda.Migrations.Configuration>());
     }
@@ -27,6 +27,7 @@ public class AppDbContext : DbContext
     public DbSet<ClassRoom> ClassRooms { get; set; }
     public DbSet<Attendance> Attendances { get; set; }
     public DbSet<Log> Logs { get; set; }
+    public DbSet<Ticket> Tickets{ get; set; }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
@@ -50,7 +51,7 @@ public class AppDbContext : DbContext
             .WillCascadeOnDelete(false);
 
         modelBuilder.Entity<ClassRoom>()
-            .HasRequired(c => c.Teacher)
+            .HasOptional(c => c.Teacher)
             .WithMany()
             .HasForeignKey(c => c.TeacherID)
             .WillCascadeOnDelete(false);
@@ -60,6 +61,19 @@ public class AppDbContext : DbContext
             .WithRequired(a => a.ClassRoom)
             .HasForeignKey<int>(a => a.ClassID)
             .WillCascadeOnDelete(false);
+
+        modelBuilder.Entity<Attendance>()
+            .HasRequired(a => a.User)
+            .WithMany()
+            .HasForeignKey<int>(a => a.UserID)
+            .WillCascadeOnDelete(false);
+
+        modelBuilder.Entity<Attendance>()
+            .HasRequired(a => a.ClassRoom)
+            .WithMany()
+            .HasForeignKey<int>(a => a.ClassID)
+            .WillCascadeOnDelete(false);
+
 
         base.OnModelCreating(modelBuilder);
 

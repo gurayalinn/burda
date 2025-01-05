@@ -32,16 +32,6 @@ namespace burda.Views
             this.MaximizeBox = false;
         }
 
-
-        public void OpenForm(Form childForm)
-        {
-            this.Controls.Clear();
-            childForm.TopLevel = false;
-            childForm.Dock = DockStyle.Fill;
-            this.Controls.Add(childForm);
-            childForm.Show();
-        }
-
         public void CloseForm(Form childForm)
         {
             this.Controls.Remove(childForm);
@@ -51,9 +41,5 @@ namespace burda.Views
         {
             this.Close();
         }
-
-
-
-
     }
 }

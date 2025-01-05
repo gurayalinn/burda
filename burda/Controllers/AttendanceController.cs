@@ -1,4 +1,5 @@
-﻿using burda.Models;
+﻿using burda.Helpers;
+using burda.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,21 @@ namespace burda.Controllers
         {
         }
 
-        public Attendance AddAttendance(User student, ClassRoom classRoom)
+        public bool AddAttendance(Attendance newAttendance)
         {
-            Attendance attendance = new Attendance
+            try
             {
-                UserID = student.ID,
-                ClassID = classRoom.ID,
-                AttTime = DateTime.Now
-            };
-            return Create(attendance);
+                User user = new UserController().GetById(newAttendance.UserID);
+                ClassRoom classRoom = new ClassRoomController().GetById(newAttendance.ClassID);
+                Create(newAttendance);
+                Logger.Information($"{user.FullName} - {classRoom.ClassName} - {classRoom.LessonName} yeni yoklama oluşturuldu.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Error creating Attendance: {ex.Message}");
+                throw new Exception($"Error creating Attendance: {ex.Message}");
+            }
         }
 
         public Attendance FindAttendanceByUserID(int userID)
@@ -79,13 +86,10 @@ namespace burda.Controllers
             return _context.Attendances.Where(a => a.AttTime >= attTime && a.AttTime <= attTime2 && a.ClassID == classID && a.UserID == userID).ToList();
         }
 
-
-
-
-
-
-
-
+        internal object Search(string text)
+        {
+            return _context.Attendances.Where(a => a.AttType.Contains(text)).ToList();
+        }
     }
 
 
